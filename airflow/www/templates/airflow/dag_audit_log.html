@@ -18,7 +18,7 @@
 #}
 
 {% extends "airflow/dag.html" %}
-{% block title %}Dag Audit Log{% endblock %}
+{% block title %}{{ _("Dag Audit Log") }}{% endblock %}
 
 {%- macro sortable_column(display_name, attribute_name) -%}
   {% set curr_ordering_direction = (request.args.get('sorting_direction', 'desc')) %}
@@ -54,7 +54,7 @@
 
 {% block content %}
   {{ super() }}
-  <h2>Dag Audit Log</h2>
+  <h2>{{ _("Dag Audit Log") }}</h2>
     <h4 style="display: block; padding-top: 10px; padding-bottom: 4px">
       <p>
         This view displays selected events and operations that have been taken on this dag.
@@ -66,14 +66,14 @@
     <table id="dag_audit_log_table" class="table table-striped table-bordered table-hover">
         <thead>
             <tr>
-                <th>{{ sortable_column("Time", "dttm") }}</th>
-                <th>{{ sortable_column("Task ID", "task_id") }}</th>
-                <th>{{ sortable_column("Event", "event") }}</th>
-                <th>{{ sortable_column("Logical Date", "execution_date") }}</th>
-                <th>Owner
-                  <span class="material-icons text-muted js-tooltip" aria-hidden="true" data-original-title="This is the user who triggered the event.">info</span>
+                <th>{{ sortable_column(_("Time"), "dttm") }}</th>
+                <th>{{ sortable_column(_("Task ID"), "task_id") }}</th>
+                <th>{{ sortable_column(_("Event"), "event") }}</th>
+                <th>{{ sortable_column(_("Logical Date"), "execution_date") }}</th>
+                <th>{{ _("Owner") }}
+                  <span class="material-icons text-muted js-tooltip" aria-hidden="true" data-original-title="{{ _('This is the user who triggered the event.') }}">info</span>
                 </th>
-                <th>Details</th>
+                <th>{{ _("Details") }}</th>
             </tr>
         </thead>
         <tbody>
@@ -100,7 +100,7 @@
       {{ paging }}
     </div>
     <div class="col-sm-6 text-right">
-      Showing <strong>{{ num_log_from }}-{{ num_log_to }}</strong> of <strong>{{ audit_logs_count }}</strong> Dag Audit Log
+      {{ _("Showing <strong>%(f)s-%(t)s</strong> of <strong>%(a)s</strong> Dag Audit Log", f=num_log_from, t=num_log_to, a=audit_logs_count) }}
     </div>
   </div>
   </div>

@@ -877,6 +877,7 @@ class Airflow(AirflowBaseView):
                     "warning",
                 )
 
+        self.update_redirect()
         return self.render_template(
             "airflow/dags.html",
             dags=dags,
@@ -920,6 +921,7 @@ class Airflow(AirflowBaseView):
         """Datasets view."""
         state_color_mapping = State.state_color.copy()
         state_color_mapping["null"] = state_color_mapping.pop(None)
+        self.update_redirect()
         return self.render_template(
             "airflow/datasets.html",
             state_color_mapping=state_color_mapping,
@@ -1208,6 +1210,7 @@ class Airflow(AirflowBaseView):
             error = f"Exception encountered during dag code retrieval/code highlighting:\n\n{e}\n"
             html_code = Markup("<p>Failed to load DAG file Code.</p><p>Details: {}</p>").format(escape(error))
 
+        self.update_redirect()
         return self.render_template(
             "airflow/dag_code.html",
             html_code=html_code,
@@ -1250,7 +1253,7 @@ class Airflow(AirflowBaseView):
         wwwutils.check_import_errors(dag.fileloc, session)
         wwwutils.check_dag_warnings(dag.dag_id, session)
 
-        title = "DAG Details"
+        title = lazy_gettext("DAG Details")
         root = request.args.get("root", "")
 
         states = (
@@ -1296,6 +1299,7 @@ class Airflow(AirflowBaseView):
             if not callable(attr)
         ]
 
+        self.update_redirect()
         return self.render_template(
             "airflow/dag_details.html",
             dag=dag,
@@ -1364,7 +1368,7 @@ class Airflow(AirflowBaseView):
         # but we'll display some quasi-meaingful field names.
         task = ti.task.unmap(None)
 
-        title = "Rendered Template"
+        title = lazy_gettext("Rendered Template")
         html_dict = {}
         renderers = wwwutils.get_attr_renderer()
 
@@ -1398,6 +1402,7 @@ class Airflow(AirflowBaseView):
                             content_value = get_value_from_path(dict_keys, content)
                             html_dict[template_path] = renderers[renderer](content_value)
 
+        self.update_redirect()
         return self.render_template(
             "airflow/ti_code.html",
             html_dict=html_dict,
@@ -1450,7 +1455,7 @@ class Airflow(AirflowBaseView):
             flash(msg, "error")
         except Exception as e:
             flash("Error rendering Kubernetes Pod Spec: " + str(e), "error")
-        title = "Rendered K8s Pod Spec"
+        title = lazy_gettext("Rendered K8s Pod Spec")
         html_dict = {}
         renderers = wwwutils.get_attr_renderer()
         if pod_spec:
@@ -1460,6 +1465,7 @@ class Airflow(AirflowBaseView):
             content = Markup("<pre><code>Error rendering Kubernetes POD Spec</pre></code>")
         html_dict["k8s"] = content
 
+        self.update_redirect()
         return self.render_template(
             "airflow/ti_code.html",
             html_dict=html_dict,
@@ -1596,11 +1602,12 @@ class Airflow(AirflowBaseView):
             num_logs = wwwutils.get_try_count(ti._try_number, ti.state)
         logs = [""] * num_logs
         root = request.args.get("root", "")
+        self.update_redirect()
         return self.render_template(
             "airflow/ti_log.html",
             logs=logs,
             dag=dag_model,
-            title="Log by attempts",
+            title=lazy_gettext("Log by attempts"),
             dag_id=dag_id,
             task_id=task_id,
             execution_date=execution_date,
@@ -1762,7 +1769,8 @@ class Airflow(AirflowBaseView):
                 (dep.dep_name, dep.reason) for dep in ti.get_failed_dep_statuses(dep_context=dep_context)
             ]
 
-        title = "Task Instance Details"
+        title = lazy_gettext("Task Instance Details")
+        self.update_redirect()
         return self.render_template(
             "airflow/task.html",
             task_attrs=task_attrs,
@@ -1818,7 +1826,8 @@ class Airflow(AirflowBaseView):
             if not xcom.key.startswith("_"):
                 attributes.append((xcom.key, xcom.value))
 
-        title = "XCom"
+        title = lazy_gettext("XCom")
+        self.update_redirect()
         return self.render_template(
             "airflow/xcom.html",
             attributes=attributes,
@@ -2700,6 +2709,7 @@ class Airflow(AirflowBaseView):
         if default_dag_run_display_number not in num_runs_options:
             insort_left(num_runs_options, default_dag_run_display_number)
 
+        self.update_redirect()
         return self.render_template(
             "airflow/grid.html",
             root=root,
@@ -2847,6 +2857,7 @@ class Airflow(AirflowBaseView):
             "end_date": (dag.end_date or now).date().isoformat(),
         }
 
+        self.update_redirect()
         return self.render_template(
             "airflow/calendar.html",
             dag=dag,
@@ -2917,10 +2928,10 @@ class Airflow(AirflowBaseView):
             arrange = SelectField(
                 "Layout",
                 choices=(
-                    ("LR", "Left > Right"),
-                    ("RL", "Right > Left"),
-                    ("TB", "Top > Bottom"),
-                    ("BT", "Bottom > Top"),
+                    ("LR", lazy_gettext("Left > Right")),
+                    ("RL", lazy_gettext("Right > Left")),
+                    ("TB", lazy_gettext("Top > Bottom")),
+                    ("BT", lazy_gettext("Bottom > Top")),
                 ),
             )
 
@@ -2954,6 +2965,7 @@ class Airflow(AirflowBaseView):
 
         state_priority = ["no_status" if p is None else p for p in wwwutils.priority]
 
+        self.update_redirect()
         return self.render_template(
             "airflow/graph.html",
             dag=dag,
@@ -3128,6 +3140,7 @@ class Airflow(AirflowBaseView):
             + cum_chart.htmlcontent[s_index:]
         )
 
+        self.update_redirect()
         return self.render_template(
             "airflow/duration_chart.html",
             dag=dag,
@@ -3223,13 +3236,14 @@ class Airflow(AirflowBaseView):
 
         chart.buildcontent()
 
+        self.update_redirect()
         return self.render_template(
             "airflow/chart.html",
             dag=dag,
             root=root,
             form=form,
             chart=Markup(chart.htmlcontent),
-            tab_title="Tries",
+            tab_title=lazy_gettext("Tries"),
             dag_model=dag_model,
         )
 
@@ -3329,6 +3343,7 @@ class Airflow(AirflowBaseView):
         )
         chart.buildcontent()
 
+        self.update_redirect()
         return self.render_template(
             "airflow/chart.html",
             dag=dag,
@@ -3336,7 +3351,7 @@ class Airflow(AirflowBaseView):
             height=str(chart_height + 100) + "px",
             root=root,
             form=form,
-            tab_title="Landing times",
+            tab_title=lazy_gettext("Landing times"),
             dag_model=dag_model,
         )
 
@@ -3463,6 +3478,7 @@ class Airflow(AirflowBaseView):
 
         session.commit()
 
+        self.update_redirect()
         return self.render_template(
             "airflow/gantt.html",
             dag=dag,
@@ -3897,6 +3913,7 @@ class Airflow(AirflowBaseView):
             query = query.order_by(sort_column)
 
         dag_audit_logs = query.offset(start).limit(logs_per_page).all()
+        self.update_redirect()
         return self.render_template(
             "airflow/dag_audit_log.html",
             dag=dag,
@@ -3939,7 +3956,7 @@ class ConfigurationView(AirflowBaseView):
     def conf(self):
         """Shows configuration."""
         raw = request.args.get("raw") == "true"
-        title = "Airflow Configuration"
+        title = lazy_gettext("Airflow Configuration")
         expose_config = conf.get("webserver", "expose_config").lower()
 
         # TODO remove "if raw" usage in Airflow 3.0. Configuration can be fetched via the REST API.
@@ -3968,6 +3985,8 @@ class ConfigurationView(AirflowBaseView):
                 mimetype="application/text",
                 headers={"Deprecation": "Endpoint will be removed in Airflow 3.0, use the REST API instead."},
             )
+
+        self.update_redirect()
 
         if expose_config in {"non-sensitive-only", "true", "t", "1"}:
             display_sensitive = expose_config != "non-sensitive-only"
@@ -4227,7 +4246,7 @@ class XComModelView(AirflowModelView):
 
     route_base = "/xcom"
 
-    list_title = "List XComs"
+    list_title = lazy_gettext("List XComs")
 
     datamodel = AirflowModelView.CustomSQLAInterface(XCom)
 
@@ -4635,8 +4654,9 @@ class PluginView(AirflowBaseView):
 
             plugins.append(plugin_data)
 
-        title = "Airflow Plugins"
+        title = lazy_gettext("Airflow Plugins")
         doc_url = get_docs_url("plugins.html")
+        self.update_redirect()
         return self.render_template(
             "airflow/plugin.html",
             plugins=plugins,
@@ -4682,8 +4702,9 @@ class ProviderView(AirflowBaseView):
             }
             providers.append(provider_data)
 
-        title = "Providers"
+        title = lazy_gettext("Providers")
         doc_url = get_docs_url("apache-airflow-providers/index.html")
+        self.update_redirect()
         return self.render_template(
             "airflow/providers.html",
             providers=providers,
@@ -4817,6 +4838,11 @@ class VariableModelView(AirflowModelView):
 
     route_base = "/variable"
 
+    list_title = lazy_gettext("List Variables")
+    show_title = lazy_gettext("Show Variable")
+    add_title = lazy_gettext("Add Variable")
+    edit_title = lazy_gettext("Edit Variable")
+
     list_template = "airflow/variable_list.html"
     edit_template = "airflow/variable_edit.html"
     show_template = "airflow/variable_show.html"
@@ -4842,6 +4868,13 @@ class VariableModelView(AirflowModelView):
         permissions.ACTION_CAN_DELETE,
         permissions.ACTION_CAN_ACCESS_MENU,
     ]
+
+    label_columns = {
+        "key": lazy_gettext("Key"),
+        "val": lazy_gettext("Value"),
+        "description": lazy_gettext("Description"),
+        "is_encrypted": lazy_gettext("Is Encrypted"),
+    }
 
     list_columns = ["key", "val", "description", "is_encrypted"]
     add_columns = ["key", "val", "description"]
@@ -4894,14 +4927,14 @@ class VariableModelView(AirflowModelView):
 
     extra_args = {"can_create_variable": _can_create_variable}
 
-    @action("muldelete", "Delete", "Are you sure you want to delete selected records?", single=False)
+    @action("muldelete", lazy_gettext("Delete"), lazy_gettext("Are you sure you want to delete selected records?"), single=False)
     def action_muldelete(self, items):
         """Multiple delete."""
         self.datamodel.delete_all(items)
         self.update_redirect()
         return redirect(self.get_redirect())
 
-    @action("varexport", "Export", "", single=False)
+    @action("varexport", lazy_gettext("Export"), "", single=False)
     def action_varexport(self, items):
         """Export variables."""
         var_dict = {}
@@ -5672,7 +5705,7 @@ class DagDependenciesView(AirflowBaseView):
     @action_logging
     def list(self):
         """Display DAG dependencies"""
-        title = "DAG Dependencies"
+        title = lazy_gettext("DAG Dependencies")
 
         if not self.nodes or not self.edges:
             self._calculate_graph()
@@ -5683,6 +5716,7 @@ class DagDependenciesView(AirflowBaseView):
                 self._calculate_graph()
             self.last_refresh = timezone.utcnow()
 
+        self.update_redirect()
         return self.render_template(
             "airflow/dag_dependencies.html",
             title=title,

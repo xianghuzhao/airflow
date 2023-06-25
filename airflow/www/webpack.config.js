@@ -191,7 +191,9 @@ const config = {
 
     // MomentJS loads all the locale, making it a huge JS file.
     // This will ignore the locales from momentJS
-    new MomentLocalesPlugin(),
+    new MomentLocalesPlugin({
+      localesToKeep: ['zh-cn'],
+    }),
 
     new webpack.DefinePlugin({
       "process.env": {

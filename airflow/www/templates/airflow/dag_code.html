@@ -19,7 +19,7 @@
 
 {% extends "airflow/dag.html" %}
 
-{% block page_title %}{{ dag.dag_id }} - Code - {{ appbuilder.app_name }}{% endblock %}
+{% block page_title %}{{ dag.dag_id }} - {{ _("Code") }} - {{ appbuilder.app_name }}{% endblock %}
 
 {% block head_meta %}
   {{ super() }}
@@ -30,11 +30,11 @@
   {{ super() }}
   {% if dag_model is defined and dag_model.last_parsed_time is defined %}
   <h4 class="parsed-at" style="padding-left: 50px;">
-    Parsed at: <time datetime="{{ dag_model.last_parsed_time }}">{{ dag_model.last_parsed_time }}</time>
+    {{ _("Parsed at") }}: <time datetime="{{ dag_model.last_parsed_time }}">{{ dag_model.last_parsed_time }}</time>
   </h4>
   {% endif %}
   <div class="code-wrap">
-    <a onclick="toggleWrap()" class="btn btn-default code-wrap-toggle">Toggle Wrap</a>
+    <a onclick="toggleWrap()" class="btn btn-default code-wrap-toggle">{{ _("Toggle Wrap") }}</a>
     {{ html_code }}
   </div>
 {% endblock %}

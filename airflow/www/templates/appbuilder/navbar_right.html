@@ -24,7 +24,7 @@
   {% endif %}
   <li class="dropdown">
     <a class="dropdown-toggle" href="javascript:void(0)">
-       <div class="f16"><i class="flag {{languages[locale].get('flag')}}"></i><b class="caret"></b></div>
+       <div class="f16">{{ languages[locale].get('name') }}</div>
     </a>
     {% if languages.keys()|length > 1 %}
       <ul class="dropdown-menu">
@@ -32,7 +32,7 @@
           {% for lang in languages %}
             {% if lang != locale %}
               <a href="{{appbuilder.get_url_for_locale(lang)}}">
-                <div class="f16"><i class="flag {{languages[lang].get('flag')}}"></i> - {{languages[lang].get('name')}}
+                <div class="f16">{{ languages[lang].get('name') }} - {{ lang }}
               </div></a>
             {% endif %}
           {% endfor %}
@@ -41,6 +41,8 @@
     {% endif %}
   </li>
 {% endmacro %}
+
+{{ locale_menu(languages) }}
 
 {# clock and timezone menu #}
 <li class="dropdown" id="timezone-dropdown">
@@ -51,13 +53,13 @@
   <ul class="dropdown-menu" id="timezone-menu">
     <li id="timezone-utc"><a data-timezone="UTC" href="#">UTC</a></li>
     <li id="timezone-server" style="display: none;"><a data-timezone="{{ server_timezone }}" href="#">{{ server_timezone }}</a></li>
-    <li id="timezone-local"><a href="#">Local</a></li>
+    <li id="timezone-local"><a href="#">{{_("Local")}}</a></li>
     <li id="timezone-manual" style="display: none"><a data-timezone="" href="#"></a></li>
     <li role="separator" class="divider"></li>
     <li>
       <form>
-        <label for="timezone-other">Other</label>
-        <input id="timezone-other" placeholder="Select Timezone name" autocomplete="off" tabindex="-1">
+        <label for="timezone-other">{{_("Other")}}</label>
+        <input id="timezone-other" placeholder="{{_('Select Timezone name')}}" autocomplete="off" tabindex="-1">
       </form>
     </li>
   </ul>

@@ -19,7 +19,7 @@
 
 {% extends "airflow/dag.html" %}
 
-{% block page_title %}{{ dag.dag_id }} - DAG Details - {{ appbuilder.app_name }}{% endblock %}
+{% block page_title %}{{ dag.dag_id }} - {{ _("DAG Details") }} - {{ appbuilder.app_name }}{% endblock %}
 
 {% block content %}
   {{ super() }}
@@ -45,58 +45,58 @@
       </tr>
     {% endif %}
     <tr>
-      <th>Schedule Interval</th>
+      <th>{{ _("Schedule Interval") }}</th>
       <td>{{ dag.schedule_interval }}</td>
     </tr>
     <tr>
-      <th>Catchup</th>
+      <th>{{ _("Catchup") }}</th>
       <td>{{ dag.catchup }}</td>
     </tr>
     {% if dag.catchup %}
       <tr>
-        <th>Start Date</th>
+        <th>{{ _("Start Date") }}</th>
         <td><time datetime="{{ dag.start_date }}">{{ dag.start_date }}</time></td>
       </tr>
     {% else %}
       <tr>
-        <th>Started</th>
+        <th>{{ _("Started") }}</th>
         <td>{{ states|length > 0 }}</td>
       </tr>
     {% endif %}
     <tr>
-      <th>End Date</th>
+      <th>{{ _("End Date") }}</th>
       <td><time datetime="{{ dag.end_date }}">{{ dag.end_date }}</time></td>
     </tr>
     <tr>
-      <th>Max Active Runs</th>
+      <th>{{ _("Max Active Runs") }}</th>
       <td>{{ active_runs | length }} / {{ dag.max_active_runs }}</td>
     </tr>
     <tr>
-      <th>Concurrency</th>
+      <th>{{ _("Concurrency") }}</th>
       <td>{{ dag.max_active_tasks }}</td>
     </tr>
     <tr>
-      <th>Default Args</th>
+      <th>{{ _("Default Args") }}</th>
       <td class="wrap">{{ dag.default_args | pprint }}</td>
     </tr>
     <tr>
-      <th>Tasks Count</th>
+      <th>{{ _("Tasks Count") }}</th>
       <td>{{ dag.tasks|length }}</td>
     </tr>
     <tr>
-      <th>Task IDs</th>
+      <th>{{ _("Task IDs") }}</th>
       <td>{{ dag.task_ids }}</td>
     </tr>
     <tr>
-      <th>Relative file location</th>
+      <th>{{ _("Relative file location") }}</th>
       <td>{{ dag.relative_fileloc }}</td>
     </tr>
     <tr>
-      <th>Owner</th>
+      <th>{{ _("Owner") }}</th>
       <td>{{ dag.owner }}</td>
     </tr>
     <tr>
-      <th>Owner Links</th>
+      <th>{{ _("Owner Links") }}</th>
       <td>
         {% if dag.owner_links %}
           {{ dag.owner_links }}
@@ -106,11 +106,11 @@
       </td>
     </tr>
     <tr>
-      <th>DAG Run Timeout</th>
+      <th>{{ _("DAG Run Timeout") }}</th>
       <td>{{ dag.dagrun_timeout }}</td>
     </tr>
     <tr>
-      <th>Tags</th>
+      <th>{{ _("Tags") }}</th>
       <td>
         {% if tags is defined and tags %}
           {% for tag in tags | sort(attribute='name') %}
@@ -128,11 +128,11 @@
       </td>
     </tr>
   </table>
-  <h5>DagModel debug information</h5>
+  <h5>{{ _("DagModel debug information") }}</h5>
   <table class="table table-striped table-bordered">
     <tr>
-      <th>Attribute</th>
-      <th>Value</th>
+      <th>{{ _("Attribute") }}</th>
+      <th>{{ _("Value") }}</th>
     </tr>
     {% for attr, value in dag_model_attrs %}
     <tr>
