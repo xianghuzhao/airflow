@@ -113,30 +113,30 @@
 
 {% block content %}
   {{ super() }}
-  <h2>Trigger DAG: {{ dag_id }}</h2>
+  <h2>{{ _("Trigger DAG") }}: {{ dag_id }}</h2>
   {{ dag_docs(doc_md) }}
   <form method="POST" id="trigger_form">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <input type="hidden" name="dag_id" value="{{ dag_id }}">
     <input type="hidden" name="origin" value="{{ origin }}">
     <div class="form-group">
-      <label for="execution_date">Logical date</label>
+      <label for="execution_date">{{ _("Logical date") }}</label>
       <div class="input-group">
         {{ form.execution_date(class_="form-control", disabled=False) }}
       </div>
     </div>
     <div class="form-group row">
       <div class="col-md-2">
-        <label for="run_id">Run id (Optional)</label>
+        <label for="run_id">{{ _("Run id (Optional)") }}</label>
         <input type="text" class="form-control" placeholder="Run ID" name="run_id">
       </div>
     </div>
     {% if recent_confs|length > 0 %}
     <div class="form-group row">
       <div class="col-md-2">
-        <label for="recent_configs">Select Recent Configurations</label>
+        <label for="recent_configs">{{ _("Select Recent Configurations") }}</label>
         <select class="form-control" name="recent_configs" id="recent_configs">
-          <option value="{{ conf }}">Default parameters</option>
+          <option value="{{ conf }}">{{ _("Default parameters") }}</option>
           {% for run_id, recent_conf in recent_confs.items() %}
           <option value="{{ recent_conf }}">{{ run_id }}: {{ recent_conf }}</option>
           {% endfor %}
@@ -147,7 +147,7 @@
     {%- if form_fields %}
     <div class="panel panel-primary ">
       <div class="panel-heading">
-        <h4 class="panel-title">DAG conf Parameters</h4>
+        <h4 class="panel-title">{{ _("DAG conf Parameters") }}</h4>
       </div>
       <textarea style="display: none;" id="json_start" name="json_start">
         {{- conf -}}
@@ -199,7 +199,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_json_conf" href="#accordion_json_conf_href" data-original-title="" title="" id="generated_json_toggle">Generated Configuration JSON<span class="caret"></span></a>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion_json_conf" href="#accordion_json_conf_href" data-original-title="" title="" id="generated_json_toggle">{{ _("Generated Configuration JSON") }}<span class="caret"></span></a>
               </h4>
             </div>
             <div id="accordion_json_conf_href" class="panel-collapse collapse">
@@ -212,11 +212,11 @@
       </div>
     </div>
     {%- else %}
-    <label for="conf">Configuration JSON (Optional, must be a dict object)</label>
+    <label for="conf">{{ _("Configuration JSON (Optional, must be a dict object)") }}</label>
     <textarea class="form-control" name="conf" id="json">{{ conf }}</textarea>
     {%- endif %}
     <p>
-      To access configuration in your DAG use <code>{{ '{{ dag_run.conf }}' }}</code>.
+      {{ _("To access configuration in your DAG use <code>{{ dag_run.conf }}</code>.") }}
       {% if is_dag_run_conf_overrides_params %}
         As <code>core.dag_run_conf_overrides_params</code> is set to <code>True</code>, so passing any configuration
         here will override task params which can be accessed via <code>{{ '{{ params }}' }}</code>.
@@ -229,11 +229,11 @@
       <label class="switch-label">
         <input class="switch-input" name="unpause" id="unpause" type="checkbox" checked>
         <span class="switch" aria-hidden="true"></span>
-        Unpause DAG when triggered
+        {{ _("Unpause DAG when triggered") }}
       </label>
     </div>
-    <button type="submit" class="btn btn-primary">Trigger</button>
-    <a class="btn" href="{{ origin }}">Cancel</a>
+    <button type="submit" class="btn btn-primary">{{ _("Trigger") }}</button>
+    <a class="btn" href="{{ origin }}">{{ _("Cancel") }}</a>
   </form>
 {% endblock %}
 

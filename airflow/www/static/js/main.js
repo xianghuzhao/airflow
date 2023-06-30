@@ -184,7 +184,7 @@ function initializeUITimezone() {
     source: $(
       moment.tz.names().map((tzName) => {
         const category = tzName.split("/", 1)[0];
-        return { category, name: tzName.replace("_", " "), tzName };
+        return {category, name: tzName.replace("_", " "), tzName};
       })
     ),
     showHintOnFocus: "all",
@@ -263,9 +263,9 @@ $(document).ready(() => {
   });
 
   $.fn.datetimepicker.defaults.sideBySide = true;
-  $(".datetimepicker").datetimepicker({ format: "YYYY-MM-DDTHH:mm:ssZ" });
-  $(".datepicker").datetimepicker({ format: "YYYY-MM-DD" });
-  $(".timepicker").datetimepicker({ format: "HH:mm:ss" });
+  $(".datetimepicker").datetimepicker({format: "YYYY-MM-DDTHH:mm:ssZ", locale: "zh-cn"});
+  $(".datepicker").datetimepicker({format: "YYYY-MM-DD", locale: "zh-cn"});
+  $(".timepicker").datetimepicker({format: "HH:mm:ss", locale: "zh-cn"});
 
   $(".filters .select2-chosen").each((idx, elem) => {
     filterOpSelected(elem);
@@ -277,7 +277,7 @@ $(document).ready(() => {
   // Fix up filter fields from FAB adds to the page. This event is fired after
   // the FAB registered one which adds the new control
   $("#filter_form a.filter").click(() => {
-    $(".datetimepicker").datetimepicker();
+    $(".datetimepicker").datetimepicker({locale: "zh-cn"});
     $(".filters .select2-chosen").on("DOMNodeInserted", (e) => {
       filterOpSelected(e.target);
     });

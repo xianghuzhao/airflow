@@ -178,7 +178,7 @@ class AirflowAppBuilder:
         app.config.setdefault("APP_NAME", "F.A.B.")
         app.config.setdefault("APP_THEME", "")
         app.config.setdefault("APP_ICON", "")
-        app.config.setdefault("LANGUAGES", {"en": {"flag": "gb", "name": "English"}})
+        app.config.setdefault("LANGUAGES", {"en": {"name": "English"}, "zh": {"name": "中文 (简体)", "moment_locale": "zh-cn"}})
         app.config.setdefault("ADDON_MANAGERS", [])
         app.config.setdefault("RATELIMIT_ENABLED", self.auth_rate_limited)
         app.config.setdefault("FAB_API_MAX_PAGE_SIZE", 100)
@@ -311,6 +311,10 @@ class AirflowAppBuilder:
         :return: String with the current F.A.B. version
         """
         return __version__
+
+    @property
+    def get_locale(self):
+        return self.bm.get_locale()
 
     def _add_global_filters(self):
         self.template_filters = TemplateFilters(self.get_app, self.sm)

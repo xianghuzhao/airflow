@@ -46,6 +46,8 @@ def init_jinja_globals(app):
     expose_hostname = conf.getboolean("webserver", "EXPOSE_HOSTNAME")
     hostname = get_hostname() if expose_hostname else "redact"
 
+    locale = app.appbuilder.bm.get_locale()
+
     try:
         airflow_version = airflow.__version__
     except Exception as e:
@@ -59,6 +61,7 @@ def init_jinja_globals(app):
             "server_timezone": server_timezone,
             "default_ui_timezone": default_ui_timezone,
             "hostname": hostname,
+            "locale": locale,
             "navbar_color": conf.get("webserver", "NAVBAR_COLOR"),
             "log_fetch_delay_sec": conf.getint("webserver", "log_fetch_delay_sec", fallback=2),
             "log_auto_tailing_offset": conf.getint("webserver", "log_auto_tailing_offset", fallback=30),

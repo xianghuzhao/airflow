@@ -19,6 +19,7 @@
 
 import React, { forwardRef } from "react";
 import { Flex } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue, appendSearchParams } from "src/utils";
 import LinkButton from "src/components/LinkButton";
@@ -45,6 +46,8 @@ interface Props {
 const Nav = forwardRef<HTMLDivElement, Props>(
   ({ taskId, executionDate, operator, isMapped = false, mapIndex }, ref) => {
     if (!taskId) return null;
+
+    const { t } = useTranslation();
     const params = new URLSearchParamsWrapper({
       task_id: taskId,
       execution_date: executionDate,
@@ -80,22 +83,22 @@ const Nav = forwardRef<HTMLDivElement, Props>(
       <Flex flexWrap="wrap" ref={ref} mb={2}>
         {(!isMapped || mapIndex !== undefined) && (
           <>
-            <LinkButton href={detailsLink}>More Details</LinkButton>
-            <LinkButton href={renderedLink}>Rendered Template</LinkButton>
+            <LinkButton href={detailsLink}>{t("More Details")}</LinkButton>
+            <LinkButton href={renderedLink}>{t("Rendered Template")}</LinkButton>
             {isK8sExecutor && (
-              <LinkButton href={k8sLink}>K8s Pod Spec</LinkButton>
+              <LinkButton href={k8sLink}>{t("K8s Pod Spec")}</LinkButton>
             )}
             {isSubDag && (
-              <LinkButton href={subDagLink}>Zoom into SubDag</LinkButton>
+              <LinkButton href={subDagLink}>{t("Zoom into SubDag")}</LinkButton>
             )}
-            <LinkButton href={xcomLink}>XCom</LinkButton>
+            <LinkButton href={xcomLink}>{t("XCom")}</LinkButton>
           </>
         )}
         <LinkButton
           href={allInstancesLink}
-          title="View all instances across all DAG runs"
+          title={t("View all instances across all DAG runs")}
         >
-          List Instances, all runs
+          {t("List Instances, all runs")}
         </LinkButton>
       </Flex>
     );

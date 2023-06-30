@@ -51,39 +51,39 @@
         <input type="hidden" value="{{ dag.dag_id }}" name="dag_id">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
         <div class="form-group">
-          <label class="sr-only" for="base_date">Base date</label>
+          <label class="sr-only" for="base_date">{{ _("Base date") }}</label>
           <div class="input-group">
             {{ form.base_date(class_="form-control", disabled=not(dag.has_dag_runs())) }}
           </div>
         </div>
         <div class="form-group">
-          <label class="sr-only" for="num_runs">Number of runs</label>
+          <label class="sr-only" for="num_runs">{{ _("Number of runs") }}</label>
           <div class="input-group">
-            <div class="input-group-addon">Runs</div>
+            <div class="input-group-addon">{{ _("Runs") }}</div>
             {{ form.num_runs(class_="form-control", disabled=not(dag.has_dag_runs())) }}
           </div>
         </div>
         <div class="form-group">
-          <label class="sr-only" for="execution_date">Run</label>
+          <label class="sr-only" for="execution_date">{{ _("Run") }}</label>
           <div class="input-group">
-            <div class="input-group-addon">Run</div>
+            <div class="input-group-addon">{{ _("Run") }}</div>
             {{ form.execution_date(class_="form-control", disabled=not(dag.has_dag_runs())) }}
           </div>
         </div>
         <div class="form-group">
-          <label class="sr-only" for="arrange">Layout</label>
+          <label class="sr-only" for="arrange">{{ _("Layout") }}</label>
           <div class="input-group">
-            <div class="input-group-addon">Layout</div>
+            <div class="input-group-addon">{{ _("Layout") }}</div>
             {{ form.arrange(class_="form-control") }}
           </div>
         </div>
-        <button type="submit" class="btn">Update</button>
-        {% if not dag.has_dag_runs() %}<span class="text-warning" style="margin-left:16px;">No DAG runs yet.</span>{% endif %}
+        <button type="submit" class="btn">{{ _("Update") }}</button>
+        {% if not dag.has_dag_runs() %}<span class="text-warning" style="margin-left:16px;">{{ _("No DAG runs yet.") }}</span>{% endif %}
       </form>
     </div>
     <div class="col-md-2 text-right">
       <label class="sr-only" for="searchbox">Search</label>
-      <input type="search" class="form-control" id="searchbox" placeholder="Find Task…">
+      <input type="search" class="form-control" id="searchbox" placeholder="{{ _('Find Task…') }}">
     </div>
   </div>
 

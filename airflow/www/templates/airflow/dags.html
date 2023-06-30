@@ -51,7 +51,7 @@
 {%- endmacro -%}
 
 {% block page_title %}
-  {% if search_query %}"{{ search_query }}" - {% endif %}DAGs - {{ appbuilder.app_name }}
+  {% if search_query %}"{{ search_query }}" - {% endif %}{{ _("DAGs") }} - {{ appbuilder.app_name }}
 {% endblock %}
 
 {% block head_meta %}
@@ -136,15 +136,15 @@
           <a
             href="{{ url_for('Airflow.index', status='all', search=request.args.get('search', None), tags=request.args.getlist('tags', None)) }}"
             class="btn {{ 'btn-primary' if status_filter == 'all' else 'btn-default' }}"
-            title="Show active and paused DAGs">All <span class="badge">{{ "{:,}".format(status_count_all) }}</span></a>
+            title="{{ _('Show active and paused DAGs') }}">{{ _("All") }} <span class="badge">{{ "{:,}".format(status_count_all) }}</span></a>
           <a
             href="{{ url_for('Airflow.index', status='active', search=request.args.get('search', None), tags=request.args.getlist('tags', None)) }}"
             class="btn {{ 'btn-primary' if status_filter == 'active' else 'btn-default' }}"
-            title="Show only active DAGs">Active <span class="badge">{{ "{:,}".format(status_count_active) }}</span></a>
+            title="{{ _('Show only active DAGs') }}">{{ _("Active") }} <span class="badge">{{ "{:,}".format(status_count_active) }}</span></a>
           <a
             href="{{ url_for('Airflow.index', status='paused', search=request.args.get('search', None), tags=request.args.getlist('tags', None)) }}"
             class="btn {{ 'btn-primary' if status_filter == 'paused' else 'btn-default' }}"
-            title="Show only paused DAGs">Paused <span class="badge">{{ "{:,}".format(status_count_paused) }}</span></a>
+            title="{{ _('Show only paused DAGs') }}">{{ _("Paused") }} <span class="badge">{{ "{:,}".format(status_count_paused) }}</span></a>
         </div>
       </div>
       <div class="col-sm-2 col-md-2">
@@ -166,10 +166,10 @@
       <div class="col-sm-2 col-md-2 col-md-offset-1 no-x-padding">
         <form id="search_form">
           <div class="form-group search-input" style="width: 100%;">
-            <label for="dag_query" class="sr-only">Search DAGs</label>
+            <label for="dag_query" class="sr-only">{{ _("Search DAGs") }}</label>
             <input type="search" id="dag_query" class="typeahead form-control search-input__input"
                    data-provide="typeahead" style="width:100%;" value="{{ search_query }}" autocomplete="off"
-                   placeholder="Search DAGs">
+                   placeholder="{{ _('Search DAGs') }}">
             {% if search_query %}
               <button type="reset" aria-label="Clear DAG Search Term"
                       class="btn btn-default btn-sm material-icons search-input__clear-btn">cancel
@@ -183,7 +183,7 @@
         <label class="switch-label">
           <input class="switch-input" id="auto_refresh" type="checkbox">
           <span class="switch" aria-hidden="true"></span>
-          Auto-refresh
+          {{ _("Auto-refresh") }}
         </label>
         <button class="btn btn-default btn-sm" id="refresh_button">
           <span class="material-icons" aria-hidden="true">refresh</span>
@@ -198,35 +198,35 @@
         <tr>
           <th width="12">
             <span class="material-icons text-muted js-tooltip"
-                  title="Use this toggle to pause/unpause a DAG. The scheduler won't schedule new tasks instances for a paused DAG. Tasks already running at pause time won't be affected.">info</span>
+                  title="{{ _("Use this toggle to pause/unpause a DAG. The scheduler won't schedule new tasks instances for a paused DAG. Tasks already running at pause time won't be affected.") }}">info</span>
           </th>
-          <th>{{ sortable_column("DAG", "dag_id") }}</th>
-          <th>{{ sortable_column("Owner", "owners") }}</th>
-          <th>Runs
+          <th>{{ sortable_column(_("DAG"), "dag_id") }}</th>
+          <th>{{ sortable_column(_("Owner"), "owners") }}</th>
+          <th>{{ _("Runs") }}
             <span class="material-icons text-muted js-tooltip" aria-hidden="true"
-                  title="Status of all previous DAG runs.">info</span>
+                  title="{{ _('Status of all previous DAG runs.') }}">info</span>
           </th>
-          <th>Schedule</th>
-          <th style="width:180px;">Last Run
+          <th>{{ _("Schedule") }}</th>
+          <th style="width:180px;">{{ _("Last Run") }}
             <span class="material-icons text-muted js-tooltip" aria-hidden="true"
-                  title="Logical Date/Time of the latest Dag Run.">info</span>
+                  title="{{ _('Logical Date/Time of the latest Dag Run.') }}">info</span>
           </th>
-          <th style="width:180px;">{{ sortable_column("Next Run", "next_dagrun") }}
+          <th style="width:180px;">{{ sortable_column(_("Next Run"), "next_dagrun") }}
             <span class="material-icons text-muted js-tooltip" aria-hidden="true"
-                  title="Logical Date/Time interval of the next DAG Run, or for dataset triggered DAGs, how many datasets have been updated since the last DAG Run.">info</span>
+                  title="{{ _('Logical Date/Time interval of the next DAG Run, or for dataset triggered DAGs, how many datasets have been updated since the last DAG Run.') }}">info</span>
           </th>
-          <th>Recent Tasks
+          <th>{{ _("Recent Tasks") }}
             <span class="material-icons text-muted js-tooltip" aria-hidden="true"
-                  title="Status of tasks from all active DAG runs or, if not currently active, from most recent run.">info</span>
+                  title="{{ _('Status of tasks from all active DAG runs or, if not currently active, from most recent run.') }}">info</span>
           </th>
-          <th class="text-center" style="width:110px;">Actions</th>
-          <th style="width:52px;">Links</th>
+          <th class="text-center" style="width:110px;">{{ _("Actions") }}</th>
+          <th style="width:52px;">{{ _("Links") }}</th>
         </tr>
         </thead>
         <tbody>
         {% if dags|length == 0 %}
           <tr>
-            <td colspan="10">No results</td>
+            <td colspan="10">{{ _("No results") }}</td>
           </tr>
         {% endif %}
         {% for dag in dags %}
@@ -234,9 +234,9 @@
           <tr>
             <td style="padding-right:0;">
               {% if dag.can_edit %}
-                {% set switch_tooltip = 'Pause/Unpause DAG' %}
+                {% set switch_tooltip = _('Pause/Unpause DAG') %}
               {% else %}
-                {% set switch_tooltip = 'DAG is Paused' if dag_is_paused else 'DAG is Active' %}
+                {% set switch_tooltip = _('DAG is Paused') if dag_is_paused else _('DAG is Active') %}
               {% endif %}
               <label class="switch-label{{ ' disabled' if not dag.can_edit else '' }} js-tooltip"
                      title="{{ switch_tooltip }}">
@@ -286,7 +286,7 @@
               </a>
               {% if dag is defined and dag.timetable_description %}
                 <span class="material-icons text-muted js-tooltip" aria-hidden="true"
-                      data-original-title="Schedule: {{ dag.timetable_description|string }}">info</span>
+                      data-original-title="{{ _('Schedule') }}: {{ dag.timetable_description|string }}">info</span>
               {% endif %}
             </td>
             <td id="last-run-{{ dag.safe_dag_id }}" class="text-nowrap latest_dag_run">
@@ -367,16 +367,16 @@
                           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                           <input type="hidden" name="dag_id" value="{{ dag.dag_id }}">
                           <input type="hidden" name="unpause" value="True">
-                          <button type="submit" class="dropdown-form-btn">Trigger DAG</button>
+                          <button type="submit" class="dropdown-form-btn">{{ _("Trigger DAG") }}</button>
                         </form>
                       </li>
-                      <li><a href="{{ url_for('Airflow.trigger', dag_id=dag.dag_id) }}">Trigger DAG w/ config</a></li>
+                      <li><a href="{{ url_for('Airflow.trigger', dag_id=dag.dag_id) }}">{{ _("Trigger DAG w/ config") }}</a></li>
                     </ul>
                   </div>
                 {% endif %}
                 {# Use dag_id instead of dag.dag_id, because the DAG might not exist in the webserver's DagBag #}
                 <a href="{{ url_for('Airflow.delete', dag_id=dag.dag_id, redirect_url=url_for(request.endpoint)) }}"
-                   onclick="return confirmDeleteDag(this, '{{ dag.dag_id }}')" title="Delete&nbsp;DAG"
+                   onclick="return confirmDeleteDag(this, '{{ dag.dag_id }}')" title="{{ _('Delete&nbsp;DAG') }}"
                    aria-label="Delete DAG"
                    class="btn btn-sm btn-default btn-icon-only {{ ' disabled' if not dag.can_delete }}">
                   <span class="material-icons text-danger" aria-hidden="true">delete_outline</span>
@@ -389,40 +389,40 @@
                   <div class="dags-table-more__links">
                     <a href="{{ url_for('Airflow.code', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">code</span>
-                      Code
+                      {{ _("Code") }}
                     </a>
                     <a href="{{ url_for('Airflow.dag_details', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">details</span>
-                      Details
+                      {{ _("Details") }}
                     </a>
                     <a href="{{ url_for('Airflow.gantt', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">vertical_distribute</span>
-                      Gantt
+                      {{ _("Gantt") }}
                     </a>
                     <a href="{{ url_for('Airflow.landing_times', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">flight_land</span>
-                      Landing
+                      {{ _("Landing") }}
                     </a>
                     <a href="{{ url_for('Airflow.tries', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">repeat</span>
-                      Tries
+                      {{ _("Tries") }}
                     </a>
                     <a href="{{ url_for('Airflow.duration', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">hourglass_bottom</span>
-                      Duration
+                      {{ _("Duration") }}
                     </a>
                     <a href="{{ url_for('Airflow.calendar', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">event</span>
-                      Calendar
+                      {{ _("Calendar") }}
                     </a>
                     <a href="{{ url_for('Airflow.graph', dag_id=dag.dag_id) }}" class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">account_tree</span>
-                      Graph
+                      {{ _("Graph") }}
                     </a>
                     <a href="{{ url_for('Airflow.grid', dag_id=dag.dag_id, num_runs=num_runs) }}"
                        class="dags-table-more__link">
                       <span class="material-icons" aria-hidden="true">grid_on</span>
-                      Grid
+                      {{ _("Grid") }}
                     </a>
                   </div>
                   <span class="dags-table-more__toggle"><span class="material-icons">more_horiz</span></span>
@@ -440,7 +440,7 @@
       {{ paging }}
     </div>
     <div class="col-sm-6 text-right">
-      Showing <strong>{{ num_dag_from }}-{{ num_dag_to }}</strong> of <strong>{{ num_of_all_dags }}</strong> DAGs
+      {{ _("Showing <strong>%(dag_from)s-%(dag_to)s</strong> of <strong>%(all_dags)s</strong> DAGs", dag_from=num_dag_from, dag_to=num_dag_to, all_dags=num_of_all_dags) }}
     </div>
   </div>
   </div>
@@ -462,10 +462,10 @@
 
     // Tests rely on confirmDeleteDag to be in the html
     function confirmDeleteDag(link, dagId) {
-      if (confirm(`Are you sure you want to delete '${dagId}' now?\n\
-        This option will delete ALL metadata, DAG runs, etc.\n\
-        EXCEPT Log.\n\
-        This cannot be undone.`)) {
+      if (confirm(`{{ _("Are you sure you want to delete '${dagId}' now?") }}\n\
+        {{ _("This option will delete ALL metadata, DAG runs, etc.") }}\n\
+        {{ _("EXCEPT Log.") }}\n\
+        {{ _("This cannot be undone.") }}`)) {
         postAsForm(link.href, {});
       }
       return false;

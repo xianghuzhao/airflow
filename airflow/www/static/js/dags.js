@@ -20,11 +20,13 @@
 /* global document, window, $, d3, STATE_COLOR, isoDateToTimeEl, autoRefreshInterval,
  localStorage */
 
-import { throttle } from "lodash";
-import { getMetaValue } from "./utils";
+import {throttle} from "lodash";
+import i18n from "i18next";
+import './i18n';
+import {getMetaValue} from "./utils";
 import tiTooltip from "./task_instances";
-import { approxTimeFromNow, formatDateTime } from "./datetime_utils";
-import { openDatasetModal, getDatasetTooltipInfo } from "./datasetUtils";
+import {approxTimeFromNow, formatDateTime} from "./datetime_utils";
+import {openDatasetModal, getDatasetTooltipInfo} from "./datasetUtils";
 
 const DAGS_INDEX = getMetaValue("dags_index");
 const ENTER_KEY_CODE = 13;
@@ -54,7 +56,7 @@ const TASK_INSTANCE = "task-instance";
 const refreshIntervalMs = 2000;
 
 $("#tags_filter").select2({
-  placeholder: "Filter DAGs by tag",
+  placeholder: i18n.t("Filter DAGs by tag"),
   allowClear: true,
 });
 
@@ -183,7 +185,7 @@ function lastDagRunsHandler(error, json) {
         )}&execution_date=${encodeURIComponent(executionDate)}`
       )
       .html("")
-      .insert(isoDateToTimeEl.bind(null, executionDate, { title: false }));
+      .insert(isoDateToTimeEl.bind(null, executionDate, {title: false}));
 
     // Only show the tooltip when we have a last run and add the json to a custom data- attribute
     g.selectAll("span")
@@ -314,7 +316,7 @@ function nextRunDatasetsSummaryHandler(_, json) {
   );
 }
 
-function getDagIds({ activeDagsOnly = false } = {}) {
+function getDagIds({activeDagsOnly = false} = {}) {
   let dagIds = $("[id^=toggle]");
   if (activeDagsOnly) {
     dagIds = dagIds.filter(":checked");
@@ -398,7 +400,7 @@ function checkActiveRuns(json) {
   // filter latest dag runs and check if there are still running dags
   const activeRuns = Object.keys(json).filter((dagId) => {
     const dagRuns = json[dagId]
-      .filter(({ state }) => state === "running" || state === "queued")
+      .filter(({state}) => state === "running" || state === "queued")
       .filter((r) => r.count > 0);
     return dagRuns.length > 0;
   });
@@ -417,8 +419,8 @@ function refreshDagStatsHandler(selector, json) {
   });
 }
 
-function handleRefresh({ activeDagsOnly = false } = {}) {
-  const dagIds = getDagIds({ activeDagsOnly });
+function handleRefresh({activeDagsOnly = false} = {}) {
+  const dagIds = getDagIds({activeDagsOnly});
   const params = new URLSearchParams();
   dagIds.forEach((dagId) => {
     params.append("dag_ids", dagId);
@@ -448,7 +450,7 @@ function handleRefresh({ activeDagsOnly = false } = {}) {
 function startOrStopRefresh() {
   if ($("#auto_refresh").is(":checked")) {
     refreshInterval = setInterval(() => {
-      handleRefresh({ activeDagsOnly: true });
+      handleRefresh({activeDagsOnly: true});
     }, autoRefreshInterval * refreshIntervalMs);
   } else {
     clearInterval(refreshInterval);
@@ -496,13 +498,13 @@ $(".js-next-run-tooltip").each((i, run) => {
       const nextRunData = $(run).attr("data-nextrun");
       const [createAfter, intervalStart, intervalEnd] = nextRunData.split(",");
       let newTitle = "";
-      newTitle += `<strong>Run After:</strong> ${formatDateTime(
+      newTitle += `<strong>${i18n.t("Run After")}:</strong> ${formatDateTime(
         createAfter
       )}<br>`;
-      newTitle += `Next Run: ${approxTimeFromNow(createAfter)}<br><br>`;
-      newTitle += "<strong>Data Interval</strong><br>";
-      newTitle += `Start: ${formatDateTime(intervalStart)}<br>`;
-      newTitle += `End: ${formatDateTime(intervalEnd)}`;
+      newTitle += `${i18n.t("Next Run")}: ${approxTimeFromNow(createAfter)}<br><br>`;
+      newTitle += `<strong>${i18n.t("Data Interval")}</strong><br>`;
+      newTitle += `${i18n.t("Start")}: ${formatDateTime(intervalStart)}<br>`;
+      newTitle += `${i18n.t("End")}: ${formatDateTime(intervalEnd)}`;
       return newTitle;
     });
   });
@@ -511,7 +513,7 @@ $(".js-next-run-tooltip").each((i, run) => {
 $("#auto_refresh").change(() => {
   if ($("#auto_refresh").is(":checked")) {
     // Run an initial refresh before starting interval if manually turned on
-    handleRefresh({ activeDagsOnly: true });
+    handleRefresh({activeDagsOnly: true});
     localStorage.removeItem("dagsDisableAutoRefresh");
   } else {
     localStorage.setItem("dagsDisableAutoRefresh", "true");

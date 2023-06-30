@@ -28,6 +28,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue } from "src/utils";
 import { useClearTask } from "src/api";
@@ -57,6 +58,8 @@ const ClearInstance = ({
   isMapped,
   ...otherProps
 }: Props) => {
+  const { t } = useTranslation();
+
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   const [past, setPast] = useState(false);
@@ -141,7 +144,7 @@ const ClearInstance = ({
         onClick={onOpen}
         {...otherProps}
       >
-        Clear task
+        {t("Clear task")}
       </Button>
       <ActionModal
         isOpen={isOpen}

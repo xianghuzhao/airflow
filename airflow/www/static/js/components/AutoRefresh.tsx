@@ -19,10 +19,12 @@
 
 import React from "react";
 import { Switch, FormControl, FormLabel, Spinner } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import { useAutoRefresh } from "src/context/autorefresh";
 
 const AutoRefresh = () => {
+  const { t } = useTranslation();
   const { isRefreshOn, toggleRefresh, isPaused } = useAutoRefresh();
 
   return (
@@ -40,7 +42,7 @@ const AutoRefresh = () => {
         display="flex"
         alignItems="center"
       >
-        Auto-refresh
+        {t("Auto-refresh")}
       </FormLabel>
       <Switch
         id="auto-refresh"
@@ -49,7 +51,7 @@ const AutoRefresh = () => {
         isChecked={isRefreshOn}
         size="lg"
         title={
-          isPaused ? "Autorefresh is disabled while the DAG is paused" : ""
+          isPaused ? t("Autorefresh is disabled while the DAG is paused") : ""
         }
       />
     </FormControl>

@@ -29,6 +29,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 import useSelection from "src/dag/useSelection";
 import { getTask, getMetaValue } from "src/utils";
@@ -93,6 +94,8 @@ const indexToTab = (
 const TAB_PARAM = "tab";
 
 const Details = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
+  const { t } = useTranslation();
+
   const {
     selected: { runId, taskId, mapIndex },
     onSelect,
@@ -198,20 +201,20 @@ const Details = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
           <Tab>
             <MdDetails size={16} />
             <Text as="strong" ml={1}>
-              Details
+              {t("Details")}
             </Text>
           </Tab>
           <Tab>
             <MdAccountTree size={16} />
             <Text as="strong" ml={1}>
-              Graph
+              {t("Graph")}
             </Text>
           </Tab>
           {showLogs && (
             <Tab>
               <MdReorder size={16} />
               <Text as="strong" ml={1}>
-                Logs
+                {t("Logs")}
               </Text>
             </Tab>
           )}
@@ -219,7 +222,7 @@ const Details = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
             <Tab>
               <BiBracket size={16} />
               <Text as="strong" ml={1}>
-                Mapped Tasks
+                {t("Mapped Tasks")}
               </Text>
             </Tab>
           )}

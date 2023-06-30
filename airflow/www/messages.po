@@ -1,0 +1,842 @@
+# Chinese translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-06-08 11:53+0800\n"
+"PO-Revision-Date: 2023-06-08 11:53+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh\n"
+"Language-Team: zh <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: forms.py:84
+msgid "Not a valid datetime value"
+msgstr "错误的时间格式"
+
+#: forms.py:135 forms.py:158
+msgid "Dag Id"
+msgstr "任务 ID"
+
+#: forms.py:136 forms.py:162 templates/airflow/dag_details.html:57
+msgid "Start Date"
+msgstr "开始日期"
+
+#: forms.py:137 forms.py:163 templates/airflow/dag_details.html:67
+msgid "End Date"
+msgstr "结束日期"
+
+#: forms.py:138
+msgid "Run Id"
+msgstr "任务运行 ID"
+
+#: forms.py:139 forms.py:165
+msgid "State"
+msgstr ""
+
+#: forms.py:141 forms.py:176 templates/airflow/dag_audit_log.html:72
+msgid "Logical Date"
+msgstr "逻辑日期"
+
+#: forms.py:144
+msgid "Conf"
+msgstr ""
+
+#: forms.py:145 forms.py:180
+msgid "User Note"
+msgstr ""
+
+#: forms.py:160
+msgid "Task Id"
+msgstr "子任务 ID"
+
+#: forms.py:207
+msgid "Connection Id"
+msgstr ""
+
+#: forms.py:212
+msgid "Connection Type"
+msgstr ""
+
+#: forms.py:221 views.py:4849
+msgid "Description"
+msgstr "描述"
+
+#: forms.py:222
+msgid "Host"
+msgstr ""
+
+#: forms.py:223
+msgid "Schema"
+msgstr ""
+
+#: forms.py:224
+msgid "Login"
+msgstr "登录"
+
+#: forms.py:225
+msgid "Password"
+msgstr "密码"
+
+#: forms.py:226
+msgid "Port"
+msgstr "端口"
+
+#: forms.py:227
+msgid "Extra"
+msgstr ""
+
+#: utils.py:639
+msgid "Is Null"
+msgstr "为空"
+
+#: utils.py:651
+msgid "Is not Null"
+msgstr "不为空"
+
+#: utils.py:663
+msgid "Greater than or Equal"
+msgstr "大于等于"
+
+#: utils.py:679
+msgid "Smaller than or Equal"
+msgstr "小于等于"
+
+#: templates/airflow/dag_details.html:22 views.py:1256
+msgid "DAG Details"
+msgstr "任务详情"
+
+#: views.py:1371
+msgid "Rendered Template"
+msgstr "模版渲染后内容"
+
+#: views.py:1458
+msgid "Rendered K8s Pod Spec"
+msgstr ""
+
+#: views.py:1610
+msgid "Log by attempts"
+msgstr "子任务运行日志"
+
+#: views.py:1772
+msgid "Task Instance Details"
+msgstr "子任务运行详情"
+
+#: views.py:1829
+msgid "XCom"
+msgstr "交叉通讯"
+
+#: views.py:2920
+msgid "Left > Right"
+msgstr "左 > 右"
+
+#: views.py:2921
+msgid "Right > Left"
+msgstr "右 > 左"
+
+#: views.py:2922
+msgid "Top > Bottom"
+msgstr "上 > 下"
+
+#: views.py:2923
+msgid "Bottom > Top"
+msgstr "下 > 上"
+
+#: templates/airflow/dags.html:408 views.py:3246
+msgid "Tries"
+msgstr "次数"
+
+#: views.py:3354
+msgid "Landing times"
+msgstr "降落时间"
+
+#: views.py:3959
+msgid "Airflow Configuration"
+msgstr "系统配置"
+
+#: views.py:4230
+msgid "List XComs"
+msgstr "交叉通讯"
+
+#: views.py:4657
+msgid "Airflow Plugins"
+msgstr "插件列表"
+
+#: extensions/init_views.py:117 views.py:4705
+msgid "Providers"
+msgstr "扩展"
+
+#: views.py:4820
+msgid "List Variables"
+msgstr "变量列表"
+
+#: views.py:4842
+msgid "Show Variable"
+msgstr "显示变量"
+
+#: views.py:4843
+msgid "Add Variable"
+msgstr "添加变量"
+
+#: views.py:4844
+msgid "Edit Variable"
+msgstr "编辑变量"
+
+#: views.py:4847
+msgid "Key"
+msgstr "变量名"
+
+#: templates/airflow/dag_details.html:135 views.py:4850
+msgid "Value"
+msgstr "变量值"
+
+#: views.py:4850
+msgid "Is Encrypted"
+msgstr "是否加密"
+
+#: views.py:4904
+msgid "Delete"
+msgstr "删除"
+
+#: views.py:4904
+msgid "Are you sure you want to delete selected records?"
+msgstr "是否确认删除选择的记录？"
+
+#: views.py:4911
+msgid "Export"
+msgstr "导出"
+
+#: views.py:5515
+msgid "Clear"
+msgstr "清除"
+
+#: views.py:5539
+msgid ""
+"Are you sure you want to clear the state of the selected task instance(s)"
+" and set their dagruns to the QUEUED state?"
+msgstr ""
+
+#: extensions/init_views.py:128 views.py:5705
+msgid "DAG Dependencies"
+msgstr "任务间依赖"
+
+#: extensions/init_appbuilder_links.py:29 templates/airflow/dags.html:54
+msgid "DAGs"
+msgstr "任务"
+
+#: extensions/init_appbuilder_links.py:31
+msgid "Datasets"
+msgstr "数据集"
+
+#: extensions/init_appbuilder_links.py:35
+msgid "Documentation"
+msgstr "文档"
+
+#: extensions/init_appbuilder_links.py:35
+msgid "Docs"
+msgstr "帮助"
+
+#: extensions/init_appbuilder_links.py:37
+msgid "Airflow Website"
+msgstr "Airflow 官方主页"
+
+#: extensions/init_appbuilder_links.py:40
+msgid "GitHub Repo"
+msgstr "GitHub 仓库"
+
+#: extensions/init_appbuilder_links.py:46
+msgid "REST API Reference (Swagger UI)"
+msgstr "REST API 参考 (Swagger UI)"
+
+#: extensions/init_appbuilder_links.py:51
+msgid "REST API Reference (Redoc)"
+msgstr "REST API 参考 (Redoc)"
+
+#: extensions/init_views.py:67
+msgid "DAG Runs"
+msgstr "任务运行"
+
+#: extensions/init_views.py:70
+msgid "Browse"
+msgstr "查看"
+
+#: extensions/init_views.py:73
+msgid "Jobs"
+msgstr "作业"
+
+#: extensions/init_views.py:76
+msgid "Audit Logs"
+msgstr "审计日志"
+
+#: extensions/init_views.py:79
+msgid "Variables"
+msgstr "全局变量"
+
+#: extensions/init_views.py:84
+msgid "Task Instances"
+msgstr "子任务"
+
+#: extensions/init_views.py:90
+msgid "Task Reschedules"
+msgstr "子任务重新调度"
+
+#: extensions/init_views.py:96
+msgid "Triggers"
+msgstr "触发器"
+
+#: extensions/init_views.py:102
+msgid "Configurations"
+msgstr "系统配置"
+
+#: extensions/init_views.py:105
+msgid "Admin"
+msgstr "管理"
+
+#: extensions/init_views.py:108
+msgid "Connections"
+msgstr "连接"
+
+#: extensions/init_views.py:111
+msgid "SLA Misses"
+msgstr ""
+
+#: extensions/init_views.py:114
+msgid "Plugins"
+msgstr "插件"
+
+#: extensions/init_views.py:120
+msgid "Pools"
+msgstr "运行池"
+
+#: extensions/init_views.py:123
+msgid "XComs"
+msgstr "交叉通讯"
+
+#: fab_security/manager.py:784
+msgid "List Users"
+msgstr ""
+
+#: fab_security/manager.py:787
+msgid "Security"
+msgstr ""
+
+#: fab_security/manager.py:794
+msgid "List Roles"
+msgstr ""
+
+#: fab_security/manager.py:805
+msgid "User's Statistics"
+msgstr ""
+
+#: fab_security/manager.py:813
+msgid "User Registrations"
+msgstr ""
+
+#: fab_security/manager.py:822 templates/airflow/dags.html:222
+msgid "Actions"
+msgstr "操作"
+
+#: fab_security/manager.py:830
+msgid "Resources"
+msgstr "资源"
+
+#: fab_security/manager.py:838
+msgid "Permissions"
+msgstr ""
+
+#: fab_security/views.py:55
+msgid "List Actions"
+msgstr "操作列表"
+
+#: fab_security/views.py:56
+msgid "Show Action"
+msgstr ""
+
+#: fab_security/views.py:57
+msgid "Add Action"
+msgstr ""
+
+#: fab_security/views.py:58
+msgid "Edit Action"
+msgstr ""
+
+#: fab_security/views.py:60 fab_security/views.py:148
+msgid "Name"
+msgstr ""
+
+#: fab_security/views.py:75
+msgid "List Permissions"
+msgstr "权限列表"
+
+#: fab_security/views.py:76
+msgid "Show Permission"
+msgstr ""
+
+#: fab_security/views.py:77
+msgid "Add Permission"
+msgstr ""
+
+#: fab_security/views.py:78
+msgid "Edit Permission"
+msgstr ""
+
+#: fab_security/views.py:81
+msgid "Action"
+msgstr "操作"
+
+#: fab_security/views.py:82
+msgid "Resource"
+msgstr "资源"
+
+#: fab_security/views.py:143
+msgid "List Resources"
+msgstr "资源列表"
+
+#: fab_security/views.py:144
+msgid "Show Resource"
+msgstr ""
+
+#: fab_security/views.py:145
+msgid "Add Resource"
+msgstr ""
+
+#: fab_security/views.py:146
+msgid "Edit Resource"
+msgstr ""
+
+#: static/js/dags.js:57
+msgid "Filter DAGs by tag"
+msgstr "根据标签过滤"
+
+#: templates/airflow/chart.html:41 templates/airflow/duration_chart.html:40
+#: templates/airflow/gantt.html:46 templates/airflow/graph.html:54
+msgid "Base date"
+msgstr "时间"
+
+#: templates/airflow/chart.html:47 templates/airflow/duration_chart.html:46
+#: templates/airflow/gantt.html:52 templates/airflow/graph.html:60
+msgid "Number of runs"
+msgstr "运行数"
+
+#: templates/airflow/chart.html:49 templates/airflow/dags.html:205
+#: templates/airflow/duration_chart.html:48 templates/airflow/gantt.html:54
+#: templates/airflow/graph.html:62
+msgid "Runs"
+msgstr "运行数"
+
+#: templates/airflow/chart.html:53 templates/airflow/duration_chart.html:52
+#: templates/airflow/gantt.html:65 templates/airflow/graph.html:80
+msgid "Update"
+msgstr "更新"
+
+#: templates/airflow/chart.html:54 templates/airflow/duration_chart.html:53
+#: templates/airflow/gantt.html:66 templates/airflow/graph.html:81
+msgid "No DAG runs yet."
+msgstr "尚未有任务运行。"
+
+#: templates/airflow/dag.html:101 templates/airflow/dag.html:122
+#: templates/airflow/dags.html:203
+msgid "DAG"
+msgstr "任务"
+
+#: templates/airflow/dag.html:108
+msgid "SUBDAG"
+msgstr "次级任务"
+
+#: templates/airflow/dag.html:112 templates/airflow/dags.html:237
+msgid "Pause/Unpause DAG"
+msgstr "暂停/恢复 任务"
+
+#: templates/airflow/dag.html:114 templates/airflow/dags.html:239
+msgid "DAG is Paused"
+msgstr "任务已暂停"
+
+#: templates/airflow/dag.html:114 templates/airflow/dags.html:239
+msgid "DAG is Active"
+msgstr "任务活跃"
+
+#: templates/airflow/dag.html:136 templates/airflow/dags.html:209
+#: templates/airflow/dags.html:289
+msgid "Schedule"
+msgstr "调度计划"
+
+#: templates/airflow/dag.html:143 templates/airflow/dags.html:214
+msgid "Next Run"
+msgstr "下一次运行"
+
+#: templates/airflow/dag.html:186 templates/airflow/dags.html:425
+msgid "Grid"
+msgstr "网格"
+
+#: templates/airflow/dag.html:190 templates/airflow/dags.html:420
+msgid "Graph"
+msgstr "图"
+
+#: templates/airflow/dag.html:193 templates/airflow/dags.html:416
+msgid "Calendar"
+msgstr "日历"
+
+#: templates/airflow/dag.html:197
+msgid "Task Duration"
+msgstr "子任务用时"
+
+#: templates/airflow/dag.html:200
+msgid "Task Tries"
+msgstr "子任务次数"
+
+#: templates/airflow/dag.html:203
+msgid "Landing Times"
+msgstr "降落"
+
+#: templates/airflow/dag.html:206 templates/airflow/dags.html:400
+#: templates/airflow/gantt.html:22
+msgid "Gantt"
+msgstr "甘特图"
+
+#: templates/airflow/dag.html:209 templates/airflow/dag_audit_log.html:76
+#: templates/airflow/dags.html:396
+msgid "Details"
+msgstr "详情"
+
+#: templates/airflow/dag.html:212 templates/airflow/dag_code.html:22
+#: templates/airflow/dags.html:392
+msgid "Code"
+msgstr "代码"
+
+#: templates/airflow/dag.html:215
+msgid "Audit Log"
+msgstr "审计日志"
+
+#: templates/airflow/dag.html:236 templates/airflow/dags.html:370
+#: templates/airflow/trigger.html:116
+msgid "Trigger DAG"
+msgstr "启动任务"
+
+#: templates/airflow/dag.html:245 templates/airflow/dags.html:373
+msgid "Trigger DAG w/ config"
+msgstr "设置参数并启动任务"
+
+#: templates/airflow/dag.html:249
+msgid "Delete DAG"
+msgstr "删除任务"
+
+#: templates/airflow/dag_audit_log.html:21
+#: templates/airflow/dag_audit_log.html:57
+msgid "Dag Audit Log"
+msgstr "任务审计日志"
+
+#: templates/airflow/dag_audit_log.html:69
+msgid "Time"
+msgstr "时间"
+
+#: templates/airflow/dag_audit_log.html:70
+msgid "Task ID"
+msgstr "子任务 ID"
+
+#: templates/airflow/dag_audit_log.html:71
+msgid "Event"
+msgstr "事件"
+
+#: templates/airflow/dag_audit_log.html:73
+#: templates/airflow/dag_details.html:95 templates/airflow/dags.html:204
+msgid "Owner"
+msgstr "所有者"
+
+#: templates/airflow/dag_audit_log.html:74
+msgid "This is the user who triggered the event."
+msgstr "触发此任务的用户"
+
+#: templates/airflow/dag_audit_log.html:103
+#, python-format
+msgid ""
+"Showing <strong>%(f)s-%(t)s</strong> of <strong>%(a)s</strong> Dag Audit "
+"Log"
+msgstr "显示 <strong>%(f)s-%(t)s</strong> 共 <strong>%(a)s</strong> 条任务审计日志"
+
+#: templates/airflow/dag_code.html:33
+msgid "Parsed at"
+msgstr "解析于"
+
+#: templates/airflow/dag_code.html:37
+msgid "Toggle Wrap"
+msgstr "切换自动换行"
+
+#: templates/airflow/dag_details.html:48
+msgid "Schedule Interval"
+msgstr "调度间隔"
+
+#: templates/airflow/dag_details.html:52
+msgid "Catchup"
+msgstr ""
+
+#: templates/airflow/dag_details.html:62
+msgid "Started"
+msgstr "开始于"
+
+#: templates/airflow/dag_details.html:71
+msgid "Max Active Runs"
+msgstr "最大活跃运行数"
+
+#: templates/airflow/dag_details.html:75
+msgid "Concurrency"
+msgstr "并行数"
+
+#: templates/airflow/dag_details.html:79
+msgid "Default Args"
+msgstr "默认参数"
+
+#: templates/airflow/dag_details.html:83
+msgid "Tasks Count"
+msgstr "子任务数"
+
+#: templates/airflow/dag_details.html:87
+msgid "Task IDs"
+msgstr "子任务 ID"
+
+#: templates/airflow/dag_details.html:91
+msgid "Relative file location"
+msgstr "文件路径"
+
+#: templates/airflow/dag_details.html:99
+msgid "Owner Links"
+msgstr "所有者链接"
+
+#: templates/airflow/dag_details.html:109
+msgid "DAG Run Timeout"
+msgstr "任务超时时间"
+
+#: templates/airflow/dag_details.html:113
+msgid "Tags"
+msgstr "标签"
+
+#: templates/airflow/dag_details.html:131
+msgid "DagModel debug information"
+msgstr "DagModel 调试信息"
+
+#: templates/airflow/dag_details.html:134
+msgid "Attribute"
+msgstr "属性"
+
+#: templates/airflow/dags.html:139
+msgid "Show active and paused DAGs"
+msgstr "显示活跃和暂停任务"
+
+#: templates/airflow/dags.html:139
+msgid "All"
+msgstr "全部"
+
+#: templates/airflow/dags.html:143
+msgid "Show only active DAGs"
+msgstr "只显示活跃任务"
+
+#: templates/airflow/dags.html:143
+msgid "Active"
+msgstr "活跃"
+
+#: templates/airflow/dags.html:147
+msgid "Show only paused DAGs"
+msgstr "只显示暂停任务"
+
+#: templates/airflow/dags.html:147
+msgid "Paused"
+msgstr "暂停"
+
+#: templates/airflow/dags.html:169 templates/airflow/dags.html:172
+msgid "Search DAGs"
+msgstr "搜索任务"
+
+#: templates/airflow/dags.html:186
+msgid "Auto-refresh"
+msgstr "自动刷新"
+
+#: templates/airflow/dags.html:201
+msgid ""
+"Use this toggle to pause/unpause a DAG. The scheduler won't schedule new "
+"tasks instances for a paused DAG. Tasks already running at pause time "
+"won't be affected."
+msgstr "点击切换任务 活跃/暂停 状态。暂停的任务不会被调度运行。已经开始运行的任务不受此状态切换影响。"
+
+#: templates/airflow/dags.html:207
+msgid "Status of all previous DAG runs."
+msgstr "所有任务运行的状态统计。"
+
+#: templates/airflow/dags.html:210
+msgid "Last Run"
+msgstr "最近一次运行"
+
+#: templates/airflow/dags.html:212
+msgid "Date/Time of the latest Dag Run."
+msgstr "最近一次运行时间。"
+
+#: templates/airflow/dags.html:216
+msgid ""
+"Expected date/time of the next DAG Run, or for dataset triggered DAGs, "
+"how many datasets have been updated since the last DAG Run."
+msgstr "预计下一次运行的时间。对于数据集触发的任务，显示自上次运行之后有多少数据集已更新。"
+
+#: templates/airflow/dags.html:218
+msgid "Recent Tasks"
+msgstr "最近运行子任务"
+
+#: templates/airflow/dags.html:220
+msgid ""
+"Status of tasks from all active DAG runs or, if not currently active, "
+"from most recent run."
+msgstr "所有正在运行的任务对应的子任务状态。如果当前没有任务在运行，则显示最近一次运行子任务状态。"
+
+#: templates/airflow/dags.html:223
+msgid "Links"
+msgstr "链接"
+
+#: templates/airflow/dags.html:229
+msgid "No results"
+msgstr "没有找到结果"
+
+#: templates/airflow/dags.html:379
+msgid "Delete&nbsp;DAG"
+msgstr "删除任务"
+
+#: templates/airflow/dags.html:404
+msgid "Landing"
+msgstr "降落"
+
+#: templates/airflow/dags.html:412
+msgid "Duration"
+msgstr "用时"
+
+#: templates/airflow/dags.html:443
+#, python-format
+msgid ""
+"Showing <strong>%(dag_from)s-%(dag_to)s</strong> of "
+"<strong>%(all_dags)s</strong> DAGs"
+msgstr "显示 <strong>%(dag_from)s-%(dag_to)s</strong> 共 <strong>%(all_dags)s</strong> 任务"
+
+#: templates/airflow/dags.html:465
+msgid "Are you sure you want to delete '${dagId}' now?"
+msgstr "确定要删除任务 '${dagId}'？"
+
+#: templates/airflow/dags.html:466
+msgid "This option will delete ALL metadata, DAG runs, etc."
+msgstr "这将会删除所有任务相关元数据，运行历史等等，"
+
+#: templates/airflow/dags.html:467
+msgid "EXCEPT Log."
+msgstr "日志会被保留。"
+
+#: templates/airflow/dags.html:468
+msgid "This cannot be undone."
+msgstr "此操作无法撤销。"
+
+#: templates/airflow/duration_chart.html:21
+msgid "Duration chart"
+msgstr "子任务用时图"
+
+#: templates/airflow/duration_chart.html:59
+msgid "Cumulative Duration"
+msgstr "累计用时"
+
+#: templates/airflow/gantt.html:59 templates/airflow/gantt.html:61
+#: templates/airflow/graph.html:67 templates/airflow/graph.html:69
+msgid "Run"
+msgstr "运行"
+
+#: templates/airflow/graph.html:74 templates/airflow/graph.html:76
+msgid "Layout"
+msgstr "布局"
+
+#: templates/airflow/graph.html:86
+msgid "Find Task…"
+msgstr "查找子任务…"
+
+#: templates/airflow/main.html:95
+msgid "Version"
+msgstr "版本"
+
+#: templates/airflow/main.html:100
+msgid "Git Version"
+msgstr "Git 版本"
+
+#: templates/airflow/trigger.html:123
+msgid "Logical date"
+msgstr "启动时间"
+
+#: templates/airflow/trigger.html:130
+msgid "Run id (Optional)"
+msgstr "任务运行 ID (可选)"
+
+#: templates/airflow/trigger.html:137
+msgid "Select Recent Configurations"
+msgstr "选择最近的任务配置"
+
+#: templates/airflow/trigger.html:139
+msgid "Default parameters"
+msgstr "默认参数"
+
+#: templates/airflow/trigger.html:150
+msgid "DAG conf Parameters"
+msgstr "任务配置参数"
+
+#: templates/airflow/trigger.html:202
+msgid "Generated Configuration JSON"
+msgstr "生成的 JSON 格式参数配置"
+
+#: templates/airflow/trigger.html:215
+msgid "Configuration JSON (Optional, must be a dict object)"
+msgstr "JSON 格式参数配置 (可选，必须使用字典对象)"
+
+#: templates/airflow/trigger.html:219
+msgid "To access configuration in your DAG use <code>{{ dag_run.conf }}</code>."
+msgstr "想要在任务代码中访问这些参数可以使用 <code>{{ dag_run.conf }}</code>。"
+
+#: templates/airflow/trigger.html:232
+msgid "Unpause DAG when triggered"
+msgstr "触发后确保任务为活跃状态"
+
+#: templates/airflow/trigger.html:235
+msgid "Trigger"
+msgstr "启动"
+
+#: templates/airflow/trigger.html:236
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/airflow/variable_list.html:34
+msgid "Import Variables"
+msgstr "导入变量"
+
+#: templates/appbuilder/dag_docs.html:28
+msgid "DAG Docs"
+msgstr "任务文档"
+
+#: templates/appbuilder/navbar_right.html:56
+msgid "Local"
+msgstr "本地时间"
+
+#: templates/appbuilder/navbar_right.html:61
+msgid "Other"
+msgstr "自定义"
+
+#: templates/appbuilder/navbar_right.html:62
+msgid "Select Timezone name"
+msgstr "选择时区"
+
+#: templates/appbuilder/navbar_right.html:81
+msgid "Your Profile"
+msgstr "用户设置"
+
+#: templates/appbuilder/navbar_right.html:83
+msgid "Log Out"
+msgstr "退出"
+
+#: templates/appbuilder/navbar_right.html:88
+msgid "Log In"
+msgstr "登录"
+

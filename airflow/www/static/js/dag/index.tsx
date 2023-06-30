@@ -24,6 +24,7 @@ import { createRoot } from "react-dom/client";
 import createCache from "@emotion/cache";
 import reactFlowStyle from "reactflow/dist/style.css";
 
+import 'src/i18n';
 import App from "src/App";
 
 import Main from "./Main";

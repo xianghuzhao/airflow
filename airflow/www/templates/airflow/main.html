@@ -92,12 +92,12 @@
 
 {% block footer %}
   {% if not current_user.is_anonymous %}
-    {% set version_label = 'Version' %}
+    {% set version_label = _('Version') %}
     <footer class="footer">
       <div class="container">
         <div>
           {{ version_label }}: {% if airflow_version %}<a href="https://pypi.python.org/pypi/apache-airflow/{{ airflow_version }}" target="_blank">v{{ airflow_version }}</a>{% else %} N/A{% endif %}
-          {% if git_version %}<br>Git Version: <strong>{{ git_version }}</strong>{% endif %}
+          {% if git_version %}<br>{{ _("Git Version") }}: <strong>{{ git_version }}</strong>{% endif %}
         </div>
         <div></div>
       </div>
@@ -114,6 +114,7 @@
     var Airflow = {
       serverTimezone: '{{ server_timezone }}',
       defaultUITimezone: '{{ default_ui_timezone }}',
+      locale: '{{ appbuilder.get_locale }}',
     };
     var hostName = '{{ hostname }}';
     var csrfToken = '{{ csrf_token() }}';

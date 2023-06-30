@@ -24,6 +24,7 @@ from connexion import FlaskApi, ProblemException, Resolver
 from connexion.decorators.validation import RequestBodyValidator
 from connexion.exceptions import BadRequestProblem
 from flask import Flask, request
+from flask_babel import lazy_gettext as _
 
 from airflow.api_connexion.exceptions import common_error_handler
 from airflow.compat.functools import cached_property
@@ -63,60 +64,68 @@ def init_appbuilder_views(app):
     appbuilder.add_view(
         views.DagRunModelView,
         permissions.RESOURCE_DAG_RUN,
+        label=_("DAG Runs"),
         category=permissions.RESOURCE_BROWSE_MENU,
         category_icon="fa-globe",
+        category_label=_("Browse"),
     )
     appbuilder.add_view(
-        views.JobModelView, permissions.RESOURCE_JOB, category=permissions.RESOURCE_BROWSE_MENU
+        views.JobModelView, permissions.RESOURCE_JOB, label=_("Jobs"), category=permissions.RESOURCE_BROWSE_MENU
     )
     appbuilder.add_view(
-        views.LogModelView, permissions.RESOURCE_AUDIT_LOG, category=permissions.RESOURCE_BROWSE_MENU
+        views.LogModelView, permissions.RESOURCE_AUDIT_LOG, label=_("Audit Logs"), category=permissions.RESOURCE_BROWSE_MENU
     )
     appbuilder.add_view(
-        views.VariableModelView, permissions.RESOURCE_VARIABLE, category=permissions.RESOURCE_ADMIN_MENU
+        views.VariableModelView, permissions.RESOURCE_VARIABLE, label=_("Variables"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
         views.TaskInstanceModelView,
         permissions.RESOURCE_TASK_INSTANCE,
+        label=_("Task Instances"),
         category=permissions.RESOURCE_BROWSE_MENU,
     )
     appbuilder.add_view(
         views.TaskRescheduleModelView,
         permissions.RESOURCE_TASK_RESCHEDULE,
+        label=_("Task Reschedules"),
         category=permissions.RESOURCE_BROWSE_MENU,
     )
     appbuilder.add_view(
         views.TriggerModelView,
         permissions.RESOURCE_TRIGGER,
+        label=_("Triggers"),
         category=permissions.RESOURCE_BROWSE_MENU,
     )
     appbuilder.add_view(
         views.ConfigurationView,
         permissions.RESOURCE_CONFIG,
+        label=_("Configurations"),
         category=permissions.RESOURCE_ADMIN_MENU,
         category_icon="fa-user",
+        category_label=_("Admin"),
     )
     appbuilder.add_view(
-        views.ConnectionModelView, permissions.RESOURCE_CONNECTION, category=permissions.RESOURCE_ADMIN_MENU
+        views.ConnectionModelView, permissions.RESOURCE_CONNECTION, label=_("Connections"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
-        views.SlaMissModelView, permissions.RESOURCE_SLA_MISS, category=permissions.RESOURCE_BROWSE_MENU
+        views.SlaMissModelView, permissions.RESOURCE_SLA_MISS, label=_("SLA Misses"), category=permissions.RESOURCE_BROWSE_MENU
     )
     appbuilder.add_view(
-        views.PluginView, permissions.RESOURCE_PLUGIN, category=permissions.RESOURCE_ADMIN_MENU
+        views.PluginView, permissions.RESOURCE_PLUGIN, label=_("Plugins"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
-        views.ProviderView, permissions.RESOURCE_PROVIDER, category=permissions.RESOURCE_ADMIN_MENU
+        views.ProviderView, permissions.RESOURCE_PROVIDER, label=_("Providers"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
-        views.PoolModelView, permissions.RESOURCE_POOL, category=permissions.RESOURCE_ADMIN_MENU
+        views.PoolModelView, permissions.RESOURCE_POOL, label=_("Pools"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
-        views.XComModelView, permissions.RESOURCE_XCOM, category=permissions.RESOURCE_ADMIN_MENU
+        views.XComModelView, permissions.RESOURCE_XCOM, label=_("XComs"), category=permissions.RESOURCE_ADMIN_MENU
     )
     appbuilder.add_view(
         views.DagDependenciesView,
         permissions.RESOURCE_DAG_DEPENDENCIES,
+        label=_("DAG Dependencies"),
         category=permissions.RESOURCE_BROWSE_MENU,
     )
     # add_view_no_menu to change item position.
