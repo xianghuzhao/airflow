@@ -312,6 +312,10 @@ class AirflowAppBuilder:
         """
         return __version__
 
+    @property
+    def get_locale(self):
+        return self.bm.get_locale()
+
     def _add_global_filters(self):
         self.template_filters = TemplateFilters(self.get_app, self.sm)
 

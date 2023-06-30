@@ -21,6 +21,7 @@
 
 import { Box, Button, Flex, Input, Select } from "@chakra-ui/react";
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import type { DagRun, RunState, TaskState } from "src/types";
 import AutoRefresh from "src/components/AutoRefresh";
 
@@ -51,6 +52,8 @@ const FilterBar = () => {
 
   const inputStyles = { backgroundColor: "white", size: "lg" };
 
+  const { t } = useTranslation();
+
   return (
     <Flex backgroundColor="#f0f0f0" mt={4} p={4} justifyContent="space-between">
       <Flex>
@@ -65,7 +68,7 @@ const FilterBar = () => {
         <Box px={2}>
           <Select
             {...inputStyles}
-            placeholder="Runs"
+            placeholder={t("Runs")}
             value={filters.numRuns || ""}
             onChange={(e) => onNumRunsChange(e.target.value)}
           >
@@ -83,7 +86,7 @@ const FilterBar = () => {
             onChange={(e) => onRunTypeChange(e.target.value)}
           >
             <option value="" key="all">
-              All Run Types
+              {t("All Run Types")}
             </option>
             {filtersOptions.runTypes.map((value) => (
               <option value={value.toString()} key={value}>
@@ -100,7 +103,7 @@ const FilterBar = () => {
             onChange={(e) => onRunStateChange(e.target.value)}
           >
             <option value="" key="all">
-              All Run States
+              {t("All Run States")}
             </option>
             {filtersOptions.dagStates.map((value) => (
               <option value={value} key={value}>
@@ -118,7 +121,7 @@ const FilterBar = () => {
             onClick={clearFilters}
             size="lg"
           >
-            Clear Filters
+            {t("Clear Filters")}
           </Button>
         </Box>
       </Flex>

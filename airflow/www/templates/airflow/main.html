@@ -114,6 +114,7 @@
     var Airflow = {
       serverTimezone: '{{ server_timezone }}',
       defaultUITimezone: '{{ default_ui_timezone }}',
+      locale: '{{ appbuilder.get_locale }}',
     };
     var hostName = '{{ hostname }}';
     var csrfToken = '{{ csrf_token() }}';

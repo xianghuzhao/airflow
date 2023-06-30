@@ -21,6 +21,7 @@
 
 import React, { useRef, useEffect } from "react";
 import { Table, Tbody, Box, Thead, IconButton } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import { MdDoubleArrow } from "react-icons/md";
 
@@ -50,6 +51,8 @@ const Grid = ({
   isGridCollapsed,
   setIsGridCollapsed,
 }: Props) => {
+  const { t } = useTranslation();
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableSectionElement>(null);
   const offsetTop = useOffsetTop(tableRef);
@@ -107,8 +110,8 @@ const Grid = ({
           onClick={() =>
             setIsGridCollapsed && setIsGridCollapsed(!isGridCollapsed)
           }
-          title={isGridCollapsed ? "Restore grid" : "Collapse grid"}
-          aria-label={isGridCollapsed ? "Restore grid" : "Collapse grid"}
+          title={isGridCollapsed ? t("Restore grid") : t("Collapse grid")}
+          aria-label={isGridCollapsed ? t("Restore grid") : t("Collapse grid")}
           icon={<MdDoubleArrow />}
           transform={isGridCollapsed ? undefined : "rotateZ(180deg)"}
           transitionProperty="none"
@@ -124,8 +127,8 @@ const Grid = ({
         zIndex={2}
         top={-8}
         onClick={onPanelToggle}
-        title={`${isPanelOpen ? "Hide " : "Show "} Details Panel`}
-        aria-label={isPanelOpen ? "Show Details" : "Hide Details"}
+        title={`${isPanelOpen ? t("Hide") : t("Show")} ${t("Details Panel")}`}
+        aria-label={isPanelOpen ? t("Show Details") : t("Hide Details")}
         icon={<MdDoubleArrow />}
         transform={isPanelOpen ? undefined : "rotateZ(180deg)"}
         transitionProperty="none"
