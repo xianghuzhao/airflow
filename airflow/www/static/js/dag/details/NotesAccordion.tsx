@@ -32,6 +32,7 @@ import {
   Divider,
 } from "@chakra-ui/react";
 import ResizeTextarea from "react-textarea-autosize";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue } from "src/utils";
 import { useSetDagRunNote, useSetTaskInstanceNote } from "src/api";
@@ -53,6 +54,7 @@ const NotesAccordion = ({
   mapIndex,
   initialValue,
 }: Props) => {
+  const { t } = useTranslation();
   const canEdit = getMetaValue("can_edit") === "True";
   const [note, setNote] = useState(initialValue ?? "");
   const [editMode, setEditMode] = useState(false);
@@ -68,7 +70,7 @@ const NotesAccordion = ({
     });
   const isLoading = dagRunIsLoading || tiIsLoading;
 
-  const objectIdentifier = taskId == null ? "DAG Run" : "Task Instance";
+  const objectIdentifier = taskId == null ? t("DAG Run") : t("Task Instance");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,7 +89,7 @@ const NotesAccordion = ({
           <AccordionButton p={0} pb={2} fontSize="inherit">
             <Box flex="1" textAlign="left">
               <Text as="strong" size="lg">
-                {objectIdentifier} Notes:
+                {objectIdentifier} {t("Notes")}:
               </Text>
             </Box>
             <AccordionIcon />
@@ -116,7 +118,7 @@ const NotesAccordion = ({
                     isLoading={isLoading}
                     colorScheme="blue"
                   >
-                    Save Note
+                    {t("Save Note")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -126,7 +128,7 @@ const NotesAccordion = ({
                     isLoading={isLoading}
                     ml={3}
                   >
-                    Cancel
+                    {t("Cancel")}
                   </Button>
                 </Flex>
               </form>
@@ -149,7 +151,7 @@ const NotesAccordion = ({
                     mt={2}
                     leftIcon={<MdEdit />}
                   >
-                    {!note ? "Add Note" : "Edit Note"}
+                    {!note ? t("Add Note") : t("Edit Note")}
                   </Button>
                 </Flex>
               </Flex>

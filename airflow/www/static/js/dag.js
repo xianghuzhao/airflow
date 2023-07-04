@@ -19,6 +19,7 @@
 
 /* global document, window, CustomEvent, $ */
 
+import i18n from "i18next";
 import { getMetaValue } from "./utils";
 import { approxTimeFromNow, formatDateTime } from "./datetime_utils";
 import { openDatasetModal, getDatasetTooltipInfo } from "./datasetUtils";
@@ -81,15 +82,15 @@ $("#next-run").on("mouseover", () => {
   $("#next-run").attr("data-original-title", () => {
     let newTitle = "";
     if (nextRun.createAfter) {
-      newTitle += `<strong>Run After:</strong> ${formatDateTime(
+      newTitle += `<strong>${i18n.t("Run After")}:</strong> ${formatDateTime(
         nextRun.createAfter
       )}<br>`;
-      newTitle += `Next Run: ${approxTimeFromNow(nextRun.createAfter)}<br><br>`;
+      newTitle += `${i18n.t("Next Run")}: ${approxTimeFromNow(nextRun.createAfter)}<br><br>`;
     }
     if (nextRun.intervalStart && nextRun.intervalEnd) {
-      newTitle += "<strong>Data Interval</strong><br>";
-      newTitle += `Start: ${formatDateTime(nextRun.intervalStart)}<br>`;
-      newTitle += `End: ${formatDateTime(nextRun.intervalEnd)}`;
+      newTitle += `<strong>${i18n.t("Data Interval")}</strong><br>`;
+      newTitle += `${i18n.t("Start")}: ${formatDateTime(nextRun.intervalStart)}<br>`;
+      newTitle += `${i18n.t("End")}: ${formatDateTime(nextRun.intervalEnd)}`;
     }
     return newTitle;
   });

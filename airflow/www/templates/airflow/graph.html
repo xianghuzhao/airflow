@@ -113,7 +113,7 @@
     <label class="switch-label">
       <input class="switch-input" id="auto_refresh" type="checkbox" {% if dag_run_state == 'running' %}checked{% endif %}>
       <span class="switch" aria-hidden="true"></span>
-      Auto-refresh
+      {{ _("Auto-refresh") }}
     </label>
     <button class="btn btn-default btn-sm" id="refresh_button">
       <span class="material-icons" aria-hidden="true">refresh</span>

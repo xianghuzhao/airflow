@@ -2143,7 +2143,7 @@ class Airflow(AirflowBaseView):
         return self.render_template(
             "airflow/confirm.html",
             endpoint=None,
-            message="Task instances you are about to clear:",
+            message=lazy_gettext("Task instances you are about to clear:"),
             details="\n".join(details),
         )
 
@@ -2558,7 +2558,7 @@ class Airflow(AirflowBaseView):
         response = self.render_template(
             "airflow/confirm.html",
             endpoint=url_for(f"Airflow.{state}"),
-            message=f"Task instances you are about to mark as {state}:",
+            message=lazy_gettext("Task instances you are about to mark as %(state)s:", state=state),
             details=details,
         )
 
@@ -5414,6 +5414,9 @@ class TriggerModelView(AirflowModelView):
 class TaskInstanceModelView(AirflowPrivilegeVerifierModelView):
     """View to show records from TaskInstance table"""
 
+    list_title = lazy_gettext("List Task Instance")
+    edit_title = lazy_gettext("Edit Task Instance")
+
     route_base = "/taskinstance"
 
     datamodel = AirflowModelView.CustomSQLAInterface(models.TaskInstance)  # type: ignore
@@ -5469,7 +5472,28 @@ class TaskInstanceModelView(AirflowPrivilegeVerifierModelView):
     ]
 
     label_columns = {
-        "dag_run.execution_date": "Logical Date",
+        "state": lazy_gettext("State"),
+        "dag_id": lazy_gettext("DAG ID"),
+        "task_id": lazy_gettext("Task ID"),
+        "run_id": lazy_gettext("Run ID"),
+        "map_index": lazy_gettext("Map Index"),
+        "dag_run.execution_date": lazy_gettext("Logical Date"),
+        "operator": lazy_gettext("Operator"),
+        "start_date": lazy_gettext("Start Date"),
+        "end_date": lazy_gettext("End Date"),
+        "duration": lazy_gettext("Duration"),
+        "note": lazy_gettext("Note"),
+        "job_id": lazy_gettext("Job ID"),
+        "hostname": lazy_gettext("Hostname"),
+        "unixname": lazy_gettext("Unixname"),
+        "priority_weight": lazy_gettext("Priority Weight"),
+        "queue": lazy_gettext("Queue"),
+        "queued_dttm": lazy_gettext("Queued DTTM"),
+        "try_number": lazy_gettext("Try Number"),
+        "pool": lazy_gettext("Pool"),
+        "queued_by_job_id": lazy_gettext("Queued by Job ID"),
+        "external_executor_id": lazy_gettext("External Executor ID"),
+        "log_url": lazy_gettext("Log URL"),
     }
 
     search_columns = [

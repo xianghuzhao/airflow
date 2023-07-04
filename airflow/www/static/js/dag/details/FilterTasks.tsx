@@ -28,12 +28,15 @@ import {
 } from "@chakra-ui/react";
 import useFilters from "src/dag/useFilters";
 import { MdArrowDropDown } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   taskId: string;
 }
 
 const FilterTasks = ({ taskId }: Props) => {
+  const { t } = useTranslation();
+
   const {
     filters: { root },
     onFilterTasksChange,
@@ -74,7 +77,7 @@ const FilterTasks = ({ taskId }: Props) => {
         aria-label={label}
       >
         <Flex>
-          {!root ? "Filter Tasks " : "Clear Task Filter "}
+          {!root ? t("Filter Tasks") : t("Clear Task Filter")}
           <MdArrowDropDown size="16px" />
         </Flex>
       </MenuButton>

@@ -28,6 +28,7 @@ import {
   MenuButtonProps,
 } from "@chakra-ui/react";
 import { MdArrowDropDown } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 import { getMetaValue } from "src/utils";
 import { useClearRun, useQueueRun } from "src/api";
 
@@ -39,6 +40,8 @@ interface Props extends MenuButtonProps {
 }
 
 const ClearRun = ({ runId, ...otherProps }: Props) => {
+  const { t } = useTranslation();
+
   const { mutateAsync: onClear, isLoading: isClearLoading } = useClearRun(
     dagId,
     runId
@@ -57,7 +60,7 @@ const ClearRun = ({ runId, ...otherProps }: Props) => {
     onQueue({ confirmed: true });
   };
 
-  const clearLabel = "Clear tasks or add new tasks";
+  const clearLabel = t("Clear tasks or add new tasks");
   return (
     <Menu>
       <MenuButton
@@ -70,13 +73,13 @@ const ClearRun = ({ runId, ...otherProps }: Props) => {
         {...otherProps}
       >
         <Flex>
-          Clear
+          {t("Clear")}
           <MdArrowDropDown size="16px" />
         </Flex>
       </MenuButton>
       <MenuList>
-        <MenuItem onClick={clearExistingTasks}>Clear existing tasks</MenuItem>
-        <MenuItem onClick={queueNewTasks}>Queue up new tasks</MenuItem>
+        <MenuItem onClick={clearExistingTasks}>{t("Clear existing tasks")}</MenuItem>
+        <MenuItem onClick={queueNewTasks}>{t("Queue up new tasks")}</MenuItem>
       </MenuList>
     </Menu>
   );

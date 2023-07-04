@@ -20,6 +20,7 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { snakeCase } from "lodash";
+import { useTranslation } from 'react-i18next';
 
 import { getGroupAndMapSummary } from "src/utils";
 import { formatDuration, getDuration } from "src/datetime_utils";
@@ -39,6 +40,8 @@ const InstanceTooltip = ({
   const isGroup = !!group.children;
   const { isMapped } = group;
   const summary: React.ReactNode[] = [];
+
+  const { t } = useTranslation();
 
   const { totalTasks, childTaskMap } = getGroupAndMapSummary({
     group,
@@ -61,7 +64,7 @@ const InstanceTooltip = ({
 
   return (
     <Box py="2px">
-      <Text>Task Id: {taskId}</Text>
+      <Text>{t("Task Id")}: {taskId}</Text>
       {group.tooltip && <Text>{group.tooltip}</Text>}
       {isMapped && totalTasks > 0 && (
         <Text>
@@ -72,21 +75,21 @@ const InstanceTooltip = ({
       )}
       <Text>
         {isGroup || totalTasks ? "Overall " : ""}
-        Status: {state || "no status"}
+        {t("Status")}: {state || "no status"}
       </Text>
       {(isGroup || isMapped) && summary}
       {startDate && (
         <>
           <Text>
-            Started: <Time dateTime={startDate} />
+            {t("Started")}: <Time dateTime={startDate} />
           </Text>
           <Text>
-            Duration: {formatDuration(getDuration(startDate, endDate))}
+            {t("Duration")}: {formatDuration(getDuration(startDate, endDate))}
           </Text>
         </>
       )}
-      {group.triggerRule && <Text>Trigger Rule: {group.triggerRule}</Text>}
-      {note && <Text>Contains a note</Text>}
+      {group.triggerRule && <Text>{t("Trigger Rule")}: {group.triggerRule}</Text>}
+      {note && <Text>{t("Contains a note")}</Text>}
     </Box>
   );
 };

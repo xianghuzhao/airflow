@@ -18,6 +18,7 @@
  */
 
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue } from "src/utils";
 import LinkButton from "src/components/LinkButton";
@@ -43,6 +44,8 @@ const LogLink = ({
   tryNumber,
   mapIndex,
 }: Props) => {
+  const { t } = useTranslation();
+
   let fullMetadataUrl = `${
     isInternal ? logsWithMetadataUrl : externalLogUrl
   }?dag_id=${encodeURIComponent(dagId)}&task_id=${encodeURIComponent(
@@ -63,7 +66,7 @@ const LogLink = ({
       href={fullMetadataUrl}
       target={isInternal ? undefined : "_blank"}
     >
-      {isInternal ? "Download" : tryNumber}
+      {isInternal ? t("Download") : tryNumber}
     </LinkButton>
   );
 };

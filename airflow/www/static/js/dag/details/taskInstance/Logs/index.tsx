@@ -29,6 +29,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { MdWarning } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue } from "src/utils";
 import useTaskLog from "src/api/useTaskLog";
@@ -106,6 +107,8 @@ const Logs = ({
   tryNumber,
   state,
 }: Props) => {
+  const { t } = useTranslation();
+
   const [internalIndexes, externalIndexes] = getLinkIndexes(tryNumber);
   const [selectedTryNumber, setSelectedTryNumber] = useState<
     number | undefined
@@ -178,7 +181,7 @@ const Logs = ({
       {tryNumber !== undefined && (
         <>
           <Box>
-            <Text as="span"> (by attempts)</Text>
+            <Text as="span"> ({t("by attempts")})</Text>
             <Flex my={1} justifyContent="space-between">
               <Flex flexWrap="wrap">
                 {internalIndexes.map((index) => (
@@ -201,7 +204,7 @@ const Logs = ({
                     size="sm"
                     isMulti
                     options={logLevelOptions}
-                    placeholder="All Levels"
+                    placeholder={t("All Levels")}
                     value={logLevelFilters}
                     onChange={(options) => setLogLevelFilters([...options])}
                     chakraStyles={{
@@ -226,7 +229,7 @@ const Logs = ({
                       label: fileSource,
                       value: fileSource,
                     }))}
-                    placeholder="All File Sources"
+                    placeholder={t("All File Sources")}
                     value={fileSourceFilters}
                     onChange={(options) => setFileSourceFilters([...options])}
                   />
@@ -239,7 +242,7 @@ const Logs = ({
                   px={4}
                   data-testid="wrap-checkbox"
                 >
-                  <Text as="strong">Wrap</Text>
+                  <Text as="strong">{t("Wrap")}</Text>
                 </Checkbox>
                 <LogLink
                   dagId={dagId}
@@ -250,7 +253,7 @@ const Logs = ({
                   mapIndex={mapIndex}
                 />
                 <LinkButton href={`${logUrl}&${params.toString()}`}>
-                  See More
+                  {t("See More")}
                 </LinkButton>
               </Flex>
             </Flex>

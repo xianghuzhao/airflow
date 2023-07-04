@@ -245,7 +245,8 @@
                 {{ _("Trigger DAG w/ config") }}</a></li>
             </ul>
           </div>
-          <a href="{{ url_for('Airflow.delete', dag_id=dag.dag_id, redirect_url=url_for(request.endpoint, dag_id=dag.dag_id)) }}" title="Delete&nbsp;DAG" class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_delete }}"
+          <a href="{{ url_for('Airflow.delete', dag_id=dag.dag_id, redirect_url=url_for(request.endpoint, dag_id=dag.dag_id)) }}" title="{{ _('Delete&nbsp;DAG') }}"
+            class="btn btn-default btn-icon-only{{ ' disabled' if not dag.can_delete }}"
             onclick="return confirmDeleteDag(this, '{{ dag.safe_dag_id }}')" aria-label="{{ _('Delete DAG') }}">
             <span class="material-icons text-danger" aria-hidden="true">delete_outline</span>
           </a>
@@ -261,8 +262,8 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="taskInstanceModalLabel">
-            <span class="text-muted">Task Instance:</span> <span id="task_id"></span>
-            <br><span class="text-muted">at:</span> <span id="execution_date"></span>
+            <span class="text-muted">{{ _("Task Instance") }}:</span> <span id="task_id"></span>
+            <br><span class="text-muted">{{ _("at") }}:</span> <span id="execution_date"></span>
             <span id="modal_map_index"><br><span class="text-muted">Map Index:</span>
               <span class="value"></span>
               <div class="dropdown" id="mapped_dropdown">
@@ -283,31 +284,31 @@
             <hr>
           </div>
           <a id="btn_task" class="btn btn-sm" data-base-url="{{ url_for('Airflow.task') }}">
-            Instance Details
+            {{ _("Instance Details") }}
           </a>
           <a id="btn_rendered" class="btn btn-sm" data-base-url="{{ url_for('Airflow.rendered_templates') }}">
-            Rendered
+            {{ _("Rendered") }}
           </a>
           {% if k8s_or_k8scelery_executor %}
             <a id="btn_rendered_k8s" class="btn btn-sm" data-base-url="{{ url_for('Airflow.rendered_k8s') }}">
-              K8s Pod Spec
+              {{ _("K8s Pod Spec") }}
             </a>
           {% endif %}
           <a id="btn_log" class="btn btn-sm" data-base-url="{{ url_for('Airflow.log') }}">
-            Log
+            {{ _("Log") }}
           </a>
           <a id="btn_xcom" class="btn btn-sm" data-base-url="{{ url_for('Airflow.xcom') }}">
-            XCom
+            {{ _("XCom") }}
           </a>
           <a id="btn_mapped" style="display: none;" class="btn btn-sm" data-base-url="{{ url_for('TaskInstanceModelView.list') }}">
-            List Instances, current run
+            {{ _("List Instances, current run") }}
           </a>
           <a id="btn_ti" class="btn btn-sm" data-base-url="{{ url_for('TaskInstanceModelView.list') }}">
-            List Instances, all runs
+            {{ _("List Instances, all runs") }}
           </a>
           <div class="dropdown" style="display: inline">
             <button class="btn btn-sm dropdown-toggle" type="button" id="filterDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Filter Tasks
+              {{ _("Filter Tasks") }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="filterDropdownMenuButton">
               <li><a id="btn_filter_upstream" href="#">Filter Upstream</a></li>
@@ -317,7 +318,7 @@
           </div>
           <hr>
           <div id="dag_dl_logs">
-            <label style="display:inline">Download Log (by attempts):</label>
+            <label style="display:inline">{{ _("Download Log (by attempts)") }}:</label>
             <ul class="nav nav-pills" role="tablist" id="try_index" style="display:inline">
             </ul>
             <hr>
@@ -331,7 +332,7 @@
               <hr>
             </div>
           {% endif %}
-          <h4 id="task_actions">Task Actions</h4>
+          <h4 id="task_actions">{{ _("Task Actions") }}</h4>
           <form method="POST" data-action="{{ url_for('Airflow.clear') }}" id="clear_action">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="dag_id" value="{{ dag.dag_id }}">
@@ -341,35 +342,35 @@
             <input type="hidden" name="origin" value="{{ request.base_url }}">
             <div class="row">
               <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
-                <label class="btn btn-default btn-sm" title="Also include past task instances when clearing this one">
+                <label class="btn btn-default btn-sm" title="{{ _('Also include past task instances when clearing this one') }}">
                   <input type="checkbox" value="true" name="past" autocomplete="off">
-                  Past
+                  {{ _("Past") }}
                 </label>
-                <label class="btn btn-default btn-sm" title="Also include future task instances when clearing this one">
+                <label class="btn btn-default btn-sm" title="{{ _('Also include future task instances when clearing this one') }}">
                   <input type="checkbox" value="true" name="future" autocomplete="off">
-                  Future
+                  {{ _("Future") }}
                 </label>
-                <label class="btn btn-default btn-sm" title="Also include upstream dependencies">
+                <label class="btn btn-default btn-sm" title="{{ _('Also include upstream dependencies') }}">
                   <input type="checkbox" value="true" name="upstream" autocomplete="off">
-                  Upstream
+                  {{ _("Upstream") }}
                 </label>
-                <label class="btn btn-default btn-sm active" title="Also include downstream dependencies">
+                <label class="btn btn-default btn-sm active" title="{{ _('Also include downstream dependencies') }}">
                   <input type="checkbox" value="true" name="downstream" checked autocomplete="off">
-                  Downstream
+                  {{ _("Downstream") }}
                 </label>
                 <label class="btn btn-default btn-sm active">
                   <input type="checkbox" value="true" name="recursive" checked autocomplete="off">
-                  Recursive
+                  {{ _("Recursive") }}
                 </label>
-                <label class="btn btn-default btn-sm" title="Only consider failed task instances when clearing this one">
+                <label class="btn btn-default btn-sm" title="{{ _('Only consider failed task instances when clearing this one') }}">
                   <input type="checkbox" value="true" name="only_failed" autocomplete="off">
-                  Failed
+                  {{ _("Failed") }}
                 </label>
               </span>
               <span class="col-xs-12 col-sm-3 task-instance-modal-column">
                 <button type="submit" id="btn_clear" class="btn btn-primary btn-block"
-                    title="Clearing deletes the previous state of the task instance, allowing it to get re-triggered by the scheduler or a backfill command">
-                  Clear
+                    title="{{ _('Clearing deletes the previous state of the task instance, allowing it to get re-triggered by the scheduler or a backfill command') }}">
+                  {{ _("Clear") }}
                 </button>
               </span>
             </div>
@@ -386,24 +387,24 @@
               <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="past" autocomplete="off">
-                  Past
+                  {{ _("Past") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="future" autocomplete="off">
-                  Future
+                  {{ _("Future") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="upstream" autocomplete="off">
-                  Upstream
+                  {{ _("Upstream") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="downstream" autocomplete="off">
-                  Downstream
+                  {{ _("Downstream") }}
                 </label>
               </span>
               <span class="col-xs-12 col-sm-3 task-instance-modal-column">
                 <button type="submit" id="btn_failed" class="btn btn-primary btn-block">
-                  Mark Failed
+                  {{ _("Mark Failed") }}
                 </button>
               </span>
             </div>
@@ -420,24 +421,24 @@
               <span class="btn-group col-xs-12 col-sm-9 task-instance-modal-column" data-toggle="buttons">
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="past" autocomplete="off">
-                  Past
+                  {{ _("Past") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="future" autocomplete="off">
-                  Future
+                  {{ _("Future") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="upstream" autocomplete="off">
-                  Upstream
+                  {{ _("Upstream") }}
                 </label>
                 <label class="btn btn-default">
                   <input type="checkbox" value="true" name="downstream" autocomplete="off">
-                  Downstream
+                  {{ _("Downstream") }}
                 </label>
               </span>
               <span class="col-xs-12 col-sm-3 task-instance-modal-column">
                 <button type="submit" id="btn_success" class="btn btn-primary btn-block">
-                  Mark Success
+                  {{ _("Mark Success") }}
                 </button>
               </span>
             </div>
@@ -446,7 +447,7 @@
           <span class="btn-group" id="extra_links"></span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ _("Close") }}</button>
         </div>
       </div>
     </div>
@@ -460,10 +461,10 @@
   <script>
     // Tests rely on confirmDeleteDag to be in the html
     function confirmDeleteDag(link, id) {
-      if (confirm(`Are you sure you want to delete '${id}' now?\n\
-        This option will delete ALL metadata, DAG runs, etc.\n\
-        EXCEPT Log.\n\
-        This cannot be undone.`)) {
+      if (confirm(`{{ _("Are you sure you want to delete '${id}' now?") }}\n\
+        {{ _("This option will delete ALL metadata, DAG runs, etc.") }}\n\
+        {{ _("EXCEPT Log.") }}\n\
+        {{ _("This cannot be undone.") }}`)) {
         postAsForm(link.href, {});
       }
       return false;

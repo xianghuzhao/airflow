@@ -25,8 +25,8 @@
   <hr>
   <br>
   <h4>
-    <span class="text-muted">Task Instance:</span> <span>{{ task_id }}</span>
-    <span class="text-muted">at</span> <time datetime="{{ execution_date }}">{{ execution_date }}</time>
+    <span class="text-muted">{{ _("Task Instance") }}:</span> <span>{{ task_id }}</span>
+    <span class="text-muted">{{ _("at") }}</span> <time datetime="{{ execution_date }}">{{ execution_date }}</time>
     {% if map_index is defined and map_index >= 0 %}
       <span class="text-muted">Map Index:</span> <span>{{ map_index }}</span>
     {% endif %}
@@ -41,21 +41,21 @@
     {% endmacro -%}
     <li><a href="{{ ti_url('Airflow.task') }}">
         <span class="material-icons" aria-hidden="true">details</span>
-      Task Instance Details</a></li>
+      {{ _("Task Instance Details") }}</a></li>
     <li><a href="{{ ti_url('Airflow.rendered_templates') }}">
         <span class="material-icons" aria-hidden="true">code</span>
-      Rendered Template</a></li>
+      {{ _("Rendered Template") }}</a></li>
     {% if k8s_or_k8scelery_executor %}
       <li><a href="{{ ti_url('Airflow.rendered_k8s') }}">
         {{ icon('kubernetes') }}
-        K8s Pod Spec</a></li>
+        {{ _("K8s Pod Spec") }}</a></li>
     {% endif %}
     <li><a href="{{ ti_url('Airflow.log') }}">
         <span class="material-icons" aria-hidden="true">reorder</span>
-      Log</a></li>
+      {{ _("Log") }}</a></li>
     <li><a href="{{ ti_url('Airflow.xcom') }}">
         <span class="material-icons" aria-hidden="true">sync_alt</span>
-      XCom</a></li>
+      {{ _("XCom") }}</a></li>
   </ul>
   <br>
 {% endblock %}

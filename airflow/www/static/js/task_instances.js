@@ -98,23 +98,23 @@ export default function tiTooltip(ti, task, { includeTryNumber = false } = {}) {
     tt += "<br />";
   }
   if (ti.task_id !== undefined) {
-    tt += `Task_id: ${escapeHtml(ti.task_id)}<br>`;
+    tt += `${i18n.t("Task_id")}: ${escapeHtml(ti.task_id)}<br>`;
   }
   if (ti.execution_date !== undefined) {
     tt += `${i18n.t("Run")}: ${formatDateTime(ti.execution_date)}<br>`;
   }
   if (ti.run_id !== undefined) {
-    tt += `Run Id: <nobr>${escapeHtml(ti.run_id)}</nobr><br>`;
+    tt += `${i18n.t("Run Id")}: <nobr>${escapeHtml(ti.run_id)}</nobr><br>`;
   }
   // Show mapped index for specific child instance, but not for a summary instance
   if (ti.map_index >= 0 && !ti.mapped_states) {
-    tt += `Map Index: ${escapeHtml(ti.map_index)}<br>`;
+    tt += `${i18n.t("Map Index")}: ${escapeHtml(ti.map_index)}<br>`;
   }
   if (ti.operator !== undefined) {
-    tt += `Operator: ${escapeHtml(ti.operator)}<br>`;
+    tt += `${i18n.t("Operator")}: ${escapeHtml(ti.operator)}<br>`;
   }
   if (task && task.trigger_rule) {
-    tt += `Trigger Rule: ${task.trigger_rule}<br>`;
+    tt += `${i18n.t("Trigger Rule")}: ${task.trigger_rule}<br>`;
   }
   // Calculate duration on the fly if task instance is still running
   if (ti.state === "running") {

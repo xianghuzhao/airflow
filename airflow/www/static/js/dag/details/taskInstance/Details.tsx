@@ -20,6 +20,7 @@
 import React from "react";
 import { Text, Flex, Table, Tbody, Tr, Td, Divider } from "@chakra-ui/react";
 import { snakeCase } from "lodash";
+import { useTranslation } from 'react-i18next';
 
 import { getGroupAndMapSummary } from "src/utils";
 import { getDuration, formatDuration } from "src/datetime_utils";
@@ -44,6 +45,8 @@ const Details = ({ instance, group, dagId }: Props) => {
     instance;
 
   const { isMapped, tooltip, operator, hasOutletDatasets, triggerRule } = group;
+
+  const { t } = useTranslation();
 
   const { data: apiTI } = useTaskInstance({
     dagId,
@@ -78,7 +81,7 @@ const Details = ({ instance, group, dagId }: Props) => {
     }
   });
 
-  const taskIdTitle = isGroup ? "Task Group ID" : "Task ID";
+  const taskIdTitle = isGroup ? t("Task Group ID") : t("Task ID");
   const isStateFinal =
     state &&
     ["success", "failed", "upstream_failed", "skipped"].includes(state);
@@ -112,7 +115,7 @@ const Details = ({ instance, group, dagId }: Props) => {
         </>
       )}
 
-      <Text as="strong">Task Instance Details</Text>
+      <Text as="strong">{t("Task Instance Details")}</Text>
       <Divider my={2} />
       <Table variant="striped">
         <Tbody>
@@ -124,7 +127,7 @@ const Details = ({ instance, group, dagId }: Props) => {
           <Tr>
             <Td>
               {isOverall}
-              Status
+              {t("Status")}
             </Td>
             <Td>
               <Flex>
@@ -150,7 +153,7 @@ const Details = ({ instance, group, dagId }: Props) => {
             </Td>
           </Tr>
           <Tr>
-            <Td>Run ID</Td>
+            <Td>{t("Run ID")}</Td>
             <Td>
               <Text whiteSpace="nowrap">
                 <ClipboardText value={runId} />
@@ -159,19 +162,19 @@ const Details = ({ instance, group, dagId }: Props) => {
           </Tr>
           {mapIndex !== undefined && (
             <Tr>
-              <Td>Map Index</Td>
+              <Td>{t("Map Index")}</Td>
               <Td>{mapIndex}</Td>
             </Tr>
           )}
           {operator && (
             <Tr>
-              <Td>Operator</Td>
+              <Td>{t("Operator")}</Td>
               <Td>{operator}</Td>
             </Tr>
           )}
           {triggerRule && (
             <Tr>
-              <Td>Trigger Rule</Td>
+              <Td>{t("Trigger Rule")}</Td>
               <Td>{triggerRule}</Td>
             </Tr>
           )}
@@ -179,14 +182,14 @@ const Details = ({ instance, group, dagId }: Props) => {
             <Tr>
               <Td>
                 {isOverall}
-                Duration
+                {t("Duration")}
               </Td>
               <Td>{formatDuration(getDuration(startDate, endDate))}</Td>
             </Tr>
           )}
           {startDate && (
             <Tr>
-              <Td>Started</Td>
+              <Td>{t("Started")}</Td>
               <Td>
                 <Time dateTime={startDate} />
               </Td>
@@ -194,7 +197,7 @@ const Details = ({ instance, group, dagId }: Props) => {
           )}
           {endDate && isStateFinal && (
             <Tr>
-              <Td>Ended</Td>
+              <Td>{t("Ended")}</Td>
               <Td>
                 <Time dateTime={endDate} />
               </Td>

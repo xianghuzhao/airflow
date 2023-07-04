@@ -24,6 +24,7 @@ import {
   BreadcrumbLink,
   Text,
 } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import { getDagRunLabel, getMetaValue, getTask } from "src/utils";
 import useSelection from "src/dag/useSelection";
@@ -36,6 +37,8 @@ import BreadcrumbText from "./BreadcrumbText";
 const dagId = getMetaValue("dag_id");
 
 const Header = () => {
+  const { t } = useTranslation();
+
   const {
     data: { dagRuns, groups, ordering },
   } = useGridData();
@@ -93,7 +96,7 @@ const Header = () => {
           onClick={clearSelection}
           _hover={isDagDetails ? { cursor: "default" } : undefined}
         >
-          <BreadcrumbText label="DAG" value={dagId} />
+          <BreadcrumbText label={t("DAG")} value={dagId} />
         </BreadcrumbLink>
       </BreadcrumbItem>
       {runId && (
@@ -102,7 +105,7 @@ const Header = () => {
             onClick={() => onSelect({ runId })}
             _hover={isRunDetails ? { cursor: "default" } : undefined}
           >
-            <BreadcrumbText label="Run" value={runLabel} />
+            <BreadcrumbText label={t("Run")} value={runLabel} />
           </BreadcrumbLink>
         </BreadcrumbItem>
       )}
@@ -113,7 +116,7 @@ const Header = () => {
             _hover={isTaskDetails ? { cursor: "default" } : undefined}
           >
             <BreadcrumbText
-              label="Task"
+              label={t("Task")}
               value={`${taskName}${group?.isMapped ? " []" : ""}`}
             />
           </BreadcrumbLink>
@@ -124,7 +127,7 @@ const Header = () => {
           <BreadcrumbLink
             _hover={isMappedTaskDetails ? { cursor: "default" } : undefined}
           >
-            <BreadcrumbText label="Map Index" value={mapIndex} />
+            <BreadcrumbText label={t("Map Index")} value={mapIndex} />
           </BreadcrumbLink>
         </BreadcrumbItem>
       )}

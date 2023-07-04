@@ -33,6 +33,7 @@ import {
 } from "@chakra-ui/react";
 import { MdArrowDropDown } from "react-icons/md";
 import { capitalize } from "lodash";
+import { useTranslation } from 'react-i18next';
 
 import { getMetaValue } from "src/utils";
 import type { TaskState } from "src/types";
@@ -65,6 +66,8 @@ const MarkInstanceAs = ({
   state: currentState,
   ...otherProps
 }: Props) => {
+  const { t } = useTranslation();
+
   const { onOpen, onClose, isOpen } = useDisclosure();
 
   const [newState, setNewState] = useState<"failed" | "success">("success");
@@ -167,7 +170,7 @@ const MarkInstanceAs = ({
           {...otherProps}
         >
           <Flex>
-            Mark state as…
+            {t("Mark state as")}…
             <MdArrowDropDown size="16px" />
           </Flex>
         </MenuButton>

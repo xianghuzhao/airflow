@@ -31,6 +31,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { mean } from "lodash";
+import { useTranslation } from 'react-i18next';
 
 import { getDuration, formatDuration } from "src/datetime_utils";
 import {
@@ -48,6 +49,7 @@ import { SimpleStatus } from "../StatusBox";
 const dagDetailsUrl = getMetaValue("dag_details_url");
 
 const Dag = () => {
+  const { t } = useTranslation();
   const {
     data: { dagRuns, groups },
   } = useGridData();
@@ -97,7 +99,7 @@ const Dag = () => {
       overflowY="auto"
     >
       <Button as={Link} variant="ghost" colorScheme="blue" href={dagDetailsUrl}>
-        More Details
+        {t("More Details")}
       </Button>
       <Table variant="striped">
         <Tbody>
@@ -105,18 +107,18 @@ const Dag = () => {
             <>
               <Tr borderBottomWidth={2} borderBottomColor="gray.300">
                 <Td>
-                  <Heading size="sm">DAG Runs Summary</Heading>
+                  <Heading size="sm">{t("DAG Runs Summary")}</Heading>
                 </Td>
                 <Td />
               </Tr>
               <Tr>
-                <Td>Total Runs Displayed</Td>
+                <Td>{t("Total Runs Displayed")}</Td>
                 <Td>{durations.length}</Td>
               </Tr>
               {stateSummary}
               {firstStart && (
                 <Tr>
-                  <Td>First Run Start</Td>
+                  <Td>{t("First Run Start")}</Td>
                   <Td>
                     <Time dateTime={firstStart} />
                   </Td>
@@ -124,34 +126,34 @@ const Dag = () => {
               )}
               {lastStart && (
                 <Tr>
-                  <Td>Last Run Start</Td>
+                  <Td>{t("Last Run Start")}</Td>
                   <Td>
                     <Time dateTime={lastStart} />
                   </Td>
                 </Tr>
               )}
               <Tr>
-                <Td>Max Run Duration</Td>
+                <Td>{t("Max Run Duration")}</Td>
                 <Td>{formatDuration(max)}</Td>
               </Tr>
               <Tr>
-                <Td>Mean Run Duration</Td>
+                <Td>{t("Mean Run Duration")}</Td>
                 <Td>{formatDuration(avg)}</Td>
               </Tr>
               <Tr>
-                <Td>Min Run Duration</Td>
+                <Td>{t("Min Run Duration")}</Td>
                 <Td>{formatDuration(min)}</Td>
               </Tr>
             </>
           )}
           <Tr borderBottomWidth={2} borderBottomColor="gray.300">
             <Td>
-              <Heading size="sm">DAG Summary</Heading>
+              <Heading size="sm">{t("DAG Summary")}</Heading>
             </Td>
             <Td />
           </Tr>
           <Tr>
-            <Td>Total Tasks</Td>
+            <Td>{t("Total Tasks")}</Td>
             <Td>{taskSummary.taskCount}</Td>
           </Tr>
           {!!taskSummary.groupCount && (

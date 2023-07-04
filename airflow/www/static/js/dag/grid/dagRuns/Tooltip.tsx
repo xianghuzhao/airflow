@@ -20,6 +20,7 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { startCase } from "lodash";
+import { useTranslation } from 'react-i18next';
 
 import { formatDuration } from "src/datetime_utils";
 import Time from "src/components/Time";
@@ -33,20 +34,21 @@ interface Props {
 }
 
 const DagRunTooltip = ({ dagRun }: Props) => {
+  const { t } = useTranslation();
   const {
     data: { ordering },
   } = useGridData();
   return (
     <Box py="2px">
-      <Text>Status: {dagRun.state || "no status"}</Text>
+      <Text>{t("Status")}: {dagRun.state || "no status"}</Text>
       <Text whiteSpace="nowrap">
         {startCase(ordering[0] || ordering[1])}
         {": "}
         <Time dateTime={getDagRunLabel({ dagRun, ordering })} />
       </Text>
-      <Text>Duration: {formatDuration(dagRun.duration)}</Text>
-      <Text>Type: {dagRun.runType}</Text>
-      {dagRun.note && <Text>Contains a note</Text>}
+      <Text>{t("Duration")}: {formatDuration(dagRun.duration)}</Text>
+      <Text>{t("Type")}: {dagRun.runType}</Text>
+      {dagRun.note && <Text>{t("Contains a note")}</Text>}
     </Box>
   );
 };

@@ -30,6 +30,7 @@ import ReactFlow, {
   Panel,
 } from "reactflow";
 import { RiFocus3Line } from "react-icons/ri";
+import { useTranslation } from 'react-i18next';
 
 import { useGraphData, useGridData } from "src/api";
 import useSelection from "src/dag/useSelection";
@@ -53,6 +54,7 @@ interface Props {
 }
 
 const Graph = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
+  const { t } = useTranslation();
   const graphRef = useRef(null);
   const containerRef = useContainerRef();
   const { data } = useGraphData();
@@ -144,15 +146,15 @@ const Graph = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
         >
           <Panel position="top-right">
             <Box bg="#ffffffdd" p={1}>
-              <Text>Layout:</Text>
+              <Text>{t("Layout")}:</Text>
               <Select
                 value={arrange}
                 onChange={(e) => setArrange(e.target.value)}
               >
-                <option value="LR">Left -&gt; Right</option>
-                <option value="RL">Right -&gt; Left</option>
-                <option value="TB">Top -&gt; Bottom</option>
-                <option value="BT">Bottom -&gt; Top</option>
+                <option value="LR">{t("Left")} -&gt; {t("Right")}</option>
+                <option value="RL">{t("Right")} -&gt; {t("Left")}</option>
+                <option value="TB">{t("Top")} -&gt; {t("Bottom")}</option>
+                <option value="BT">{t("Bottom")} -&gt; {t("Top")}</option>
               </Select>
             </Box>
           </Panel>
@@ -161,7 +163,7 @@ const Graph = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
             <ControlButton onClick={focusNode} disabled={!selected.taskId}>
               <Tooltip
                 portalProps={{ containerRef }}
-                label="Center selected task"
+                label={t("Center selected task")}
                 placement="right"
               >
                 <Box>
@@ -173,7 +175,7 @@ const Graph = ({ openGroupIds, onToggleGroups, hoveredTaskState }: Props) => {
                       maxHeight: "16px",
                       color: colors.gray[800],
                     }}
-                    aria-label="Center selected task"
+                    aria-label={t("Center selected task")}
                   />
                 </Box>
               </Tooltip>

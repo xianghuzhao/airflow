@@ -29,6 +29,7 @@ import {
   Td,
   useClipboard,
 } from "@chakra-ui/react";
+import { useTranslation } from 'react-i18next';
 
 import ReactJson from "react-json-view";
 
@@ -58,6 +59,7 @@ const formatConf = (conf: string | null | undefined): string => {
 };
 
 const DagRun = ({ runId }: Props) => {
+  const { t } = useTranslation();
   const {
     data: { dagRuns },
   } = useGridData();
@@ -101,7 +103,7 @@ const DagRun = ({ runId }: Props) => {
       <Table variant="striped">
         <Tbody>
           <Tr>
-            <Td>Status</Td>
+            <Td>{t("Status")}</Td>
             <Td>
               <Flex>
                 <SimpleStatus state={state} mx={2} />
@@ -110,13 +112,13 @@ const DagRun = ({ runId }: Props) => {
             </Td>
           </Tr>
           <Tr>
-            <Td>Run ID</Td>
+            <Td>{t("Run ID")}</Td>
             <Td>
               <ClipboardText value={runId} />
             </Td>
           </Tr>
           <Tr>
-            <Td>Run type</Td>
+            <Td>{t("Run type")}</Td>
             <Td>
               <RunTypeIcon runType={runType} />
               {runType}
@@ -124,13 +126,13 @@ const DagRun = ({ runId }: Props) => {
           </Tr>
           {startDate && (
             <Tr>
-              <Td>Run duration</Td>
+              <Td>{t("Run duration")}</Td>
               <Td>{formatDuration(getDuration(startDate, endDate))}</Td>
             </Tr>
           )}
           {lastSchedulingDecision && (
             <Tr>
-              <Td>Last scheduling decision</Td>
+              <Td>{t("Last scheduling decision")}</Td>
               <Td>
                 <Time dateTime={lastSchedulingDecision} />
               </Td>
@@ -138,7 +140,7 @@ const DagRun = ({ runId }: Props) => {
           )}
           {queuedAt && (
             <Tr>
-              <Td>Queued at</Td>
+              <Td>{t("Queued at")}</Td>
               <Td>
                 <Time dateTime={queuedAt} />
               </Td>
@@ -146,7 +148,7 @@ const DagRun = ({ runId }: Props) => {
           )}
           {startDate && (
             <Tr>
-              <Td>Started</Td>
+              <Td>{t("Started")}</Td>
               <Td>
                 <Time dateTime={startDate} />
               </Td>
@@ -154,7 +156,7 @@ const DagRun = ({ runId }: Props) => {
           )}
           {endDate && (
             <Tr>
-              <Td>Ended</Td>
+              <Td>{t("Ended")}</Td>
               <Td>
                 <Time dateTime={endDate} />
               </Td>
@@ -163,13 +165,13 @@ const DagRun = ({ runId }: Props) => {
           {dataIntervalStart && dataIntervalEnd && (
             <>
               <Tr>
-                <Td>Data interval start</Td>
+                <Td>{t("Data interval start")}</Td>
                 <Td>
                   <Time dateTime={dataIntervalStart} />
                 </Td>
               </Tr>
               <Tr>
-                <Td>Data interval end</Td>
+                <Td>{t("Data interval end")}</Td>
                 <Td>
                   <Time dateTime={dataIntervalEnd} />
                 </Td>
@@ -177,11 +179,11 @@ const DagRun = ({ runId }: Props) => {
             </>
           )}
           <Tr>
-            <Td>Externally triggered</Td>
+            <Td>{t("Externally triggered")}</Td>
             <Td>{externalTrigger ? "True" : "False"}</Td>
           </Tr>
           <Tr>
-            <Td>Run config</Td>
+            <Td>{t("Run config")}</Td>
             {confIsJson ? (
               <Td>
                 <Flex>

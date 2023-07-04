@@ -37,6 +37,8 @@ declare const filtersOptions: {
 };
 
 const FilterBar = () => {
+  const { t } = useTranslation();
+
   const {
     filters,
     onBaseDateChange,
@@ -51,8 +53,6 @@ const FilterBar = () => {
   const formattedTime = time.tz(timezone).format(isoFormatWithoutTZ);
 
   const inputStyles = { backgroundColor: "white", size: "lg" };
-
-  const { t } = useTranslation();
 
   return (
     <Flex backgroundColor="#f0f0f0" mt={4} p={4} justifyContent="space-between">

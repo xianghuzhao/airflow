@@ -28,6 +28,7 @@ import {
   MenuButtonProps,
 } from "@chakra-ui/react";
 import { MdArrowDropDown } from "react-icons/md";
+import { useTranslation } from 'react-i18next';
 import { getMetaValue } from "src/utils";
 import { useMarkFailedRun, useMarkSuccessRun } from "src/api";
 import type { RunState } from "src/types";
@@ -43,6 +44,8 @@ interface Props extends MenuButtonProps {
 }
 
 const MarkRunAs = ({ runId, state, ...otherProps }: Props) => {
+  const { t } = useTranslation();
+
   const { mutateAsync: markFailed, isLoading: isMarkFailedLoading } =
     useMarkFailedRun(dagId, runId);
   const { mutateAsync: markSuccess, isLoading: isMarkSuccessLoading } =
@@ -69,7 +72,7 @@ const MarkRunAs = ({ runId, state, ...otherProps }: Props) => {
         {...otherProps}
       >
         <Flex>
-          Mark state as...
+          {t("Mark state as")}...
           <MdArrowDropDown size="16px" />
         </Flex>
       </MenuButton>
