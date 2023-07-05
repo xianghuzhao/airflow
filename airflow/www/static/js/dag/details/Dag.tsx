@@ -75,7 +75,7 @@ const Dag = () => {
           <Td>
             <Flex alignItems="center">
               <SimpleStatus state={val as TaskState} mr={2} />
-              <Text>Total {val}</Text>
+              <Text>{t("total_val", { val: val })}</Text>
             </Flex>
           </Td>
           <Td>{key}</Td>

@@ -96,5 +96,6 @@
   "by attempt": "按照尝试次数",
   "All Levels": "所有日志等级",
   "All File Sources": "所有文件来源",
+  "total_val": "所有 {{val}} 数目",
   "placeholder": "=================================="
 }

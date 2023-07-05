@@ -179,6 +179,7 @@ class AirflowAppBuilder:
         app.config.setdefault("APP_THEME", "")
         app.config.setdefault("APP_ICON", "")
         app.config.setdefault("LANGUAGES", {"en": {"name": "English"}, "zh": {"name": "中文 (简体)", "moment_locale": "zh-cn"}})
+        app.config.setdefault("BABEL_DEFAULT_LOCALE", "zh")
         app.config.setdefault("ADDON_MANAGERS", [])
         app.config.setdefault("RATELIMIT_ENABLED", self.auth_rate_limited)
         app.config.setdefault("FAB_API_MAX_PAGE_SIZE", 100)
